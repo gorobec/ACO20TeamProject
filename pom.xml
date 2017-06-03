@@ -46,7 +46,10 @@
     <modules>
         <module>Yevhen</module>
         <module>AlexanderShpilka</module>
+<<<<<<< HEAD
         <module>Diversaint</module>
+=======
+>>>>>>> 3dde6c9b3ca0e504135316d5f079af597ad13972
         <module>valentyna</module>
         <module>aikolesnikov</module>
     </modules>
