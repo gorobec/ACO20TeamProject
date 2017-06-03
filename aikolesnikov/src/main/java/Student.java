@@ -58,8 +58,10 @@ public class Student {
         if ((o == null) || (!(o.getClass() == this.getClass()))) return false;
         Student tmpO = (Student) o;
         return (tmpO.age == age) &&
-                (tmpO.name != null) && (name != null) && (tmpO.name.equals(name)) &&
-                (tmpO.surname != null) && (surname != null) && (tmpO.surname.equals(surname));
+                ((tmpO.name == null) && (name == null) ||
+                (tmpO.name != null) && (tmpO.name.equals(name))) &&
+                ((tmpO.surname == null) && (surname == null) ||
+                        (tmpO.surname != null) && (tmpO.surname.equals(surname)));
     }
 
 /*

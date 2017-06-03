@@ -150,9 +150,17 @@ public class Group {
         int len = students.length;
         if (len != tmpO.getStudents().length) return false;
         for (int i = 0; i < len; i++) {
+            if ((tmpO.getStudents()[i] == null) && (students[i] != null)) return false;
+            if ((tmpO.getStudents()[i] != null) && (students[i] == null)) return false;
+            if (((tmpO.getStudents()[i] != null) && (students[i] != null)) &&
+                    (!(tmpO.getStudents()[i].equals(students[i]))))
+                return false;
+
+            /*
             if ((tmpO.getStudents()[i] == null) || (students[i] == null)
                     || (!(tmpO.getStudents()[i].equals(students[i]))))
                 return false;
+*/
         }
         return (tmpO.id == id) && (tmpO.size == size);
     }

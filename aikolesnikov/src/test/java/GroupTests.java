@@ -51,7 +51,7 @@ public class GroupTests {
                 "{st_name1 st_surname1};null;Student: {st_name3};"));
 
         Assert.assertFalse(gr5.equals(gr1));
-        Assert.assertFalse(gr6.equals(gr5));
+        Assert.assertTrue(gr6.equals(gr5));
 
         Student[] arSt33 = new Student[]{
                 new Student("st_name1", "st_sname1", 1),
@@ -163,10 +163,9 @@ public class GroupTests {
         group.addStudent(new Student("Smith"));
         copy.addStudent(new Student("Smith"));
 
-        // Assert.assertEquals(group, copy);
-        // Assert.assertTrue(group.equals(copy));
+        Assert.assertEquals(group, copy);
+        Assert.assertTrue(group.equals(copy));
         Assert.assertTrue(copy.equals(group));
-
     }
 
 }
