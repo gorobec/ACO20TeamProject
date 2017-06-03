@@ -2,10 +2,11 @@
  * University of universities class
  */
 public class University {
-    protected static final int INIT_UN_SIZE = 5;
-    protected int id;
-    protected int size;
-    protected Group[] groups;
+    private static final int INIT_UN_SIZE = 5;
+    private int id;
+    private String name;
+    private int size;
+    private Group[] groups;
 
     public int getId() {
         return id;
@@ -46,8 +47,9 @@ public class University {
         size = 0;
     }
 
-    public University(int id, Group[] groups) {
+    public University(int id, String name, Group[] groups) {
         this.id = id;
+        this.name = name;
         if (groups == null) {
             this.groups = new Group[INIT_UN_SIZE];
             this.size = 0;
