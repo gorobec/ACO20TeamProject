@@ -1,7 +1,6 @@
 /**
- * univer class
+ * University of universities class
  */
-
 public class University {
     private static final int INIT_UN_SIZE = 5;
     private int id;
@@ -15,14 +14,6 @@ public class University {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getSize() {
@@ -46,7 +37,7 @@ public class University {
     }
 
     public University() {
-        this.groups = new Group[INIT_UN_SIZE];
+        groups = new Group[INIT_UN_SIZE];
         size = 0;
     }
 
@@ -55,7 +46,6 @@ public class University {
         this.groups = new Group[INIT_UN_SIZE];
         size = 0;
     }
-
 
     public University(int id, String name, Group[] groups) {
         this.id = id;
@@ -72,25 +62,22 @@ public class University {
     }
 
     public boolean addGroup(Group group) {
-        if (group == null) return false;
-        if (this.size == groups.length) return false;
+        if ((group == null) || (size == groups.length)) return false;
 
-        for (int i = 0; i < groups.length - 1; i++) {
+        for (int i = groups.length - 1; i >= 0; i--) {
             if (groups[i] == null) {
                 groups[i] = group;
                 size++;
                 return true;
             }
         }
-        groups[size] = group;
-
-        return true;
+        return false;
     }
 
     public int findGroup(Group group) {
         if (group != null) {
             for (int i = 0; i < groups.length; i++) {
-                if (group == groups[i]) return i;
+                if (group.equals(groups[i])) return i;
             }
             return -1;
         }
@@ -98,36 +85,25 @@ public class University {
             if (null == groups[i]) return i;
         }
         return -1;
-
     }
 
     public boolean deleteGroup(Group group) {
-
         int index = findGroup(group);
         if (findGroup(group) != -1) {
-            Group[] newAr = new Group[this.groups.length - 1];
-            this.size--;
-
-            System.arraycopy(this.groups, 0, newAr, 0, index);
-            System.arraycopy(this.groups, index + 1, newAr, index, this.groups.length - 1 - index);
-
-            this.groups = newAr;
+            if (index < 0 || index > this.groups.length - 1) return false;
+            System.arraycopy(groups, index + 1, groups, index, groups.length - 1 - index);
+            size--;
+            groups[groups.length - 1] = null;
             return true;
         }
         return false;
     }
 
     public boolean deleteGroupInd(int index) {
-
         if (index < 0 || index > this.groups.length - 1) return false;
-
-        Group[] newAr = new Group[this.groups.length - 1];
-        this.size--;
-
-        System.arraycopy(this.groups, 0, newAr, 0, index);
-        System.arraycopy(this.groups, index + 1, newAr, index, this.groups.length - 1 - index);
-
-        this.groups = newAr;
+        System.arraycopy(groups, index + 1, groups, index, groups.length - 1 - index);
+        size--;
+        groups[groups.length - 1] = null;
         return true;
     }
 
@@ -144,7 +120,9 @@ public class University {
 
         for (int i = 0; i < bound; i++) {
             for (int j = bound - 1; j > i; j--) {
-                if (groups[j].getId() < groups[j - 1].getId()) {
+                if ((groups[j - 1] == null) ||
+                        (groups[j] != null) && (groups[j - 1] != null) &&
+                                (groups[j].getId() > groups[j - 1].getId())){
                     tmpSt = groups[j];
                     groups[j] = groups[j - 1];
                     groups[j - 1] = tmpSt;
@@ -159,19 +137,28 @@ public class University {
         String str = "";
         for (Group group : groups) {
             if (!(group == null))
-                str = str.concat(group.getId() + ";");
+                str = str.concat(group.toString().concat(";"));
             else str = str.concat("null;");
         }
 
-        return name + " groups: " + str;
+        return "University " + id + " includes:\n" + str;
     }
 
     @Override
-    public boolean equals(Object gr) {
-        return gr != null &&
-                // gr instanceof Group &&
-                gr.getClass() == this.getClass() &&
-                this.toString().equals(gr.toString());
+    public boolean equals(Object o) {
+        if ((o == null) || (!(o.getClass() == this.getClass()))) return false;
+        University tmpO = (University) o;
+        if ((groups == null) || (tmpO.getGroups() == null)) return false;
+        int len = groups.length;
+        if (len != tmpO.getGroups().length) return false;
+        for (int i = 0; i < len; i++) {
+            if ((tmpO.getGroups()[i] == null) && (groups[i] != null)) return false;
+            if ((tmpO.getGroups()[i] != null) && (groups[i] == null)) return false;
+            if (((tmpO.getGroups()[i] != null) && (groups[i] != null)) &&
+                    (!(tmpO.getGroups()[i].equals(groups[i]))))
+                return false;
+        }
+        return (tmpO.id == id) && (tmpO.size == size);
     }
 
 }

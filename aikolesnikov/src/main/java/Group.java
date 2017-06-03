@@ -7,6 +7,30 @@ public class Group {
     protected int size;
     protected Student[] students;
 
+    public Group() {
+        students = new Student[INIT_GR_SIZE];
+        size = 0;
+    }
+
+    public Group(int id) {
+        this.id = id;
+        this.students = new Student[INIT_GR_SIZE];
+        size = 0;
+    }
+
+    public Group(int id, Student[] students) {
+        this.id = id;
+        if (students == null) {
+            this.students = new Student[INIT_GR_SIZE];
+            this.size = 0;
+        } else {
+            this.students = students;
+            for (Student student : students) {
+                if (!(student == null)) size++;
+            }
+        }
+    }
+
     public int getId() {
         return id;
     }
@@ -33,30 +57,6 @@ public class Group {
 
     public static int getInitGrSize() {
         return INIT_GR_SIZE;
-    }
-
-    public Group() {
-        students = new Student[INIT_GR_SIZE];
-        size = 0;
-    }
-
-    public Group(int id) {
-        this.id = id;
-        this.students = new Student[INIT_GR_SIZE];
-        size = 0;
-    }
-
-    public Group(int id, Student[] students) {
-        this.id = id;
-        if (students == null) {
-            this.students = new Student[INIT_GR_SIZE];
-            this.size = 0;
-        } else {
-            this.students = students;
-            for (Student student : students) {
-                if (!(student == null)) size++;
-            }
-        }
     }
 
     public boolean addStudent(Student student) {
@@ -129,7 +129,6 @@ public class Group {
         }
     }
 
-
     @Override
     public String toString() {
         String str = "";
@@ -150,9 +149,17 @@ public class Group {
         int len = students.length;
         if (len != tmpO.getStudents().length) return false;
         for (int i = 0; i < len; i++) {
+            if ((tmpO.getStudents()[i] == null) && (students[i] != null)) return false;
+            if ((tmpO.getStudents()[i] != null) && (students[i] == null)) return false;
+            if (((tmpO.getStudents()[i] != null) && (students[i] != null)) &&
+                    (!(tmpO.getStudents()[i].equals(students[i]))))
+                return false;
+
+            /*
             if ((tmpO.getStudents()[i] == null) || (students[i] == null)
                     || (!(tmpO.getStudents()[i].equals(students[i]))))
                 return false;
+*/
         }
         return (tmpO.id == id) && (tmpO.size == size);
     }
