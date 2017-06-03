@@ -7,6 +7,8 @@
     <groupId>ua.artcode</groupId>
     <artifactId>ACO20TeamProject</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
 
 
     <dependencies>
@@ -46,7 +48,7 @@
     <modules>
         <module>Yevhen</module>
         <module>AlexanderShpilka</module>
-        <module>valentyna</module>
+        <module>Valentyna</module>
         <module>Diversaint</module>
         <module>aikolesnikov</module>
     </modules>
