@@ -45,17 +45,10 @@
 
     <modules>
         <module>Yevhen</module>
-<<<<<<< HEAD
-<<<<<<< HEAD
         <module>AlexanderShpilka</module>
-=======
-        <module>Diversaint</module>
->>>>>>> e008d9c7f48612a4f00e6d9a159041b94ece7b3c
-=======
         <module>valentyna</module>
         <module>Diversaint</module>
         <module>aikolesnikov</module>
->>>>>>> 49e9cf97ee713e6bbfcfd65518223bcc6a11e7da
     </modules>
 
 </project>
