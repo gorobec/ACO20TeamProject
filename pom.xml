@@ -45,7 +45,11 @@
 
     <modules>
         <module>Yevhen</module>
+<<<<<<< HEAD
         <module>AlexanderShpilka</module>
+=======
+        <module>Diversaint</module>
+>>>>>>> e008d9c7f48612a4f00e6d9a159041b94ece7b3c
     </modules>
 
 </project>
