@@ -1,8 +1,10 @@
 import org.junit.Assert;
 import org.junit.Test;
+import university.Group;
+import university.University;
 
 /**
- * tests for University class
+ * tests for university.University class
  */
 public class UniversityTests {
     @Test

@@ -44,7 +44,7 @@ public class Student implements Comparable<Student>{
     }
 
     public String asString(){
-        return String.format("Student name - %s, surName - %s, age - %d",
+        return String.format("university.Student name - %s, surName - %s, age - %d",
                 name, surName, age);
     }
 
@@ -53,18 +53,17 @@ public class Student implements Comparable<Student>{
         if(student == null) return false;
         if(student == this) return true;
 
-//        if(student.getClass() != Student.class) return false;
+//        if(student.getClass() != university.Student.class) return false;
         if(!(student instanceof Student))return false;
 
         Student another = (Student) student;
-        if(this.name.equals(another.name) &&
-                this.surName.equals(another.surName)) return true;
-        return false;
+        return this.name.equals(another.name) &&
+                this.surName.equals(another.surName);
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Student{");
+        final StringBuilder sb = new StringBuilder("university.Student{");
         sb.append("name='").append(name).append('\'');
         sb.append(", surName='").append(surName).append('\'');
         sb.append(", age=").append(age);

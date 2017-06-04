@@ -1,5 +1,7 @@
+package university;
+
 /**
- * University of universities class
+ * university.University of universities class
  */
 public class University {
     private static final int INIT_UN_SIZE = 5;
@@ -141,7 +143,7 @@ public class University {
             else str = str.concat("null;");
         }
 
-        return "University " + id + " includes:\n" + str;
+        return "university.University " + id + " includes:\n" + str;
     }
 
     @Override
