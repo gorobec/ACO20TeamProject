@@ -5,10 +5,10 @@ import java.util.Iterator;
 /**
  * Created by gorobec on 21.05.17.
  */
-public class MyArrayList implements MyList{
+public class MyArrayList<T> implements MyList<T>{
 
     private static final int DEFAULT_CAPACITY = 10;
-    private Object[] elementData;
+    private T[] elementData;
     private int size;
 
 
@@ -16,19 +16,21 @@ public class MyArrayList implements MyList{
         this(DEFAULT_CAPACITY);
     }
 
+    @SuppressWarnings(value = "unchecked")
     public MyArrayList(int capacity) {
-        elementData = new Object[capacity];
+        elementData = (T[])new Object[capacity];
     }
 
     @Override
-    public boolean add(Object o) {
+    public boolean add(T o) {
         if(size == elementData.length) ensureCapacity();
         elementData[size++] = o;
         return true;
     }
 
+    @SuppressWarnings(value = "unchecked")
     private void ensureCapacity() {
-        Object[] newElementData = new Object[(elementData.length * 3 )/ 2 + 1];
+        T[] newElementData = (T[])new Object[(elementData.length * 3 )/ 2 + 1];
         System.arraycopy(elementData, 0, newElementData, 0, size);
         elementData = newElementData;
     }
@@ -49,7 +51,7 @@ public class MyArrayList implements MyList{
     }
 
     @Override
-    public boolean remove(Object o) {
+    public boolean remove(T o) {
 
 
         if(o == null){
@@ -79,27 +81,27 @@ public class MyArrayList implements MyList{
     }
 
     @Override
-    public boolean add(Object o, int index) {
+    public boolean add(T o, int index) {
         return false;
     }
 
     @Override
-    public Object get(int index) {
+    public T get(int index) {
         return null;
     }
 
     @Override
-    public Object remove(int index) {
+    public T remove(int index) {
         return null;
     }
 
     @Override
-    public boolean set(Object o, int index) {
+    public boolean set(T o, int index) {
         return false;
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return null;
     }
 }

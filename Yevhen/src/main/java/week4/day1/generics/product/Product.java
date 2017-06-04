@@ -4,7 +4,7 @@ package week4.day1.generics.product;
  * @author Yevhen Vorobiei
  * @since JDK 1.8
  */
-public abstract class Product implements Comparable<Product> {
+public abstract class Product implements Comparable<Product>{
     private final String name;
     private final long price;
 
@@ -23,8 +23,14 @@ public abstract class Product implements Comparable<Product> {
 
     @Override
     public int compareTo(Product o) {
-        return 0;
+        return name.compareTo(o.name);
     }
+
+    /*@Override
+    public int compareTo(Object o) {
+        Product p = (Product)o;
+        return 0;
+    }*/
 
     @Override
     public String toString() {

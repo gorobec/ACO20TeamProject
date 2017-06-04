@@ -1,6 +1,7 @@
 package week4.day1.generics.product;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -15,8 +16,10 @@ public class Run2 {
 
         List<Camera> cameras = new ArrayList<>();
         List<Phone> phones = new ArrayList<>();
+        List<String> strings = new LinkedList<>();
 
         Utils.find(cameras, camera);
+//        Utils.find(strings, "");
 //        Utils.find(cameras, phone);
         Utils.find(phones, phone);
     }

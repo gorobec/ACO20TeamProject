@@ -3,10 +3,10 @@ package data_structures;
 /**
  * Created by gorobec on 21.05.17.
  */
-public interface MyList extends MyCollection {
+public interface MyList<T> extends MyCollection<T> {
 
-    boolean add(Object o, int index);
-    Object get(int index);
-    Object remove(int index);
-    boolean set(Object o, int index);
+    boolean add(T o, int index);
+    T get(int index);
+    T remove(int index);
+    boolean set(T o, int index);
 }

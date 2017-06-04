@@ -5,11 +5,11 @@ import java.util.Iterator;
 /**
  * Created by gorobec on 27.05.17.
  */
-public class MyLinkedList implements MyList{
+public class MyLinkedList<T> implements MyList<T>{
 
-    private MyNode head;
+    private MyNode<T> head;
 
-    private MyNode tail;
+    private MyNode<T> tail;
 
     private int size;
 
@@ -18,9 +18,9 @@ public class MyLinkedList implements MyList{
     }
 
     @Override
-    public boolean add(Object o) {
+    public boolean add(T o) {
 
-        MyNode node = new MyNode(o);
+        MyNode<T> node = new MyNode<>(o);
 
         if(size == 0) {
             head = tail = node;
@@ -49,9 +49,9 @@ public class MyLinkedList implements MyList{
     }
 
     @Override
-    public boolean remove(Object o) {
+    public boolean remove(T o) {
 
-        MyNode forRemove = findNode(o);
+        MyNode<T> forRemove = findNode(o);
 
         if(forRemove == null) return false;
 
@@ -79,12 +79,12 @@ public class MyLinkedList implements MyList{
         return true;
     }
 
-    private MyNode findNode(Object o) {
+    private MyNode<T> findNode(T o) {
 
-        MyNode iterator = head;
+        MyNode<T> iterator = head;
         if(o == null){
             for (int i = 0; i < size; i++) {
-                if(o == iterator.value){
+                if(null == iterator.value){
                     return iterator;
                 }
                 iterator = iterator.next;
@@ -107,36 +107,36 @@ public class MyLinkedList implements MyList{
     }
 
     @Override
-    public boolean add(Object o, int index) {
+    public boolean add(T o, int index) {
         return false;
     }
 
     @Override
-    public Object get(int index) {
+    public T get(int index) {
         return null;
     }
 
     @Override
-    public Object remove(int index) {
+    public T remove(int index) {
         return null;
     }
 
     @Override
-    public boolean set(Object o, int index) {
+    public boolean set(T o, int index) {
         return false;
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return null;
     }
 
-    private static class MyNode {
-        private MyNode next;
-        private MyNode previous;
-        private Object value;
+    private static class MyNode<T> {
+        private MyNode<T> next;
+        private MyNode<T> previous;
+        private T value;
 
-        public MyNode(Object value) {
+        private MyNode(T value) {
             this.value = value;
         }
     }
