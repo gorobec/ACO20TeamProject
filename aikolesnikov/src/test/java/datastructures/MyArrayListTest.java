@@ -40,6 +40,32 @@ public class MyArrayListTest {
         Assert.assertTrue(myArList.size()==8);
     }
 
+    @Test
+    public void checkRemoveObjIndex(){
+
+        // remove nonexistent
+        Assert.assertNull(myArList.remove(-1));
+        Assert.assertNull(myArList.remove(6));
+
+        // remove last
+        Assert.assertEquals(myArList.size(),6);
+        Assert.assertEquals(myArList.getAr()[5],myArList.remove(5));
+        Assert.assertNull(myArList.getAr()[5]);
+        Assert.assertEquals(myArList.getAr()[4],5);
+
+        Assert.assertEquals(myArList.size(),5);
+
+        // remove first
+        Assert.assertEquals(myArList.getAr()[0],myArList.remove(0));
+        Assert.assertEquals(myArList.getAr()[0],2);
+        Assert.assertEquals(myArList.size(),4);
+
+        // remove second
+        Assert.assertEquals(myArList.getAr()[1],myArList.remove(1));
+        Assert.assertEquals(myArList.getAr()[1],4);
+        Assert.assertEquals(myArList.size(),3);
+    }
+
 /*    @After
     public void tearDown(){
     }*/

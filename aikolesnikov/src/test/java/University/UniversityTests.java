@@ -1,3 +1,5 @@
+package University;
+
 import org.junit.Assert;
 import org.junit.Test;
 import university.Group;

@@ -48,10 +48,12 @@ public class MyArrayList implements MyList {
         this.ar = ar;
     }
 
+    @Override
     public boolean add(Object o) {
-        if (size == ar.length) {
-            Object[] newAr = new Object[ar.length * 15 / 10];
-            System.arraycopy(ar, 0, newAr, 0, ar.length);
+        int arEnd = ar.length;
+        if (size == arEnd) {
+            Object[] newAr = new Object[arEnd * 15 / 10];
+            System.arraycopy(ar, 0, newAr, 0, arEnd);
             ar = newAr;
             ar[size++] = o;
             return true;
@@ -61,12 +63,29 @@ public class MyArrayList implements MyList {
         }
     }
 
+    @Override
     public Object get(int index) {
-        if ((index < 0) || (index > size - 1)) return null;
+        if ((index < 0) || (index > ar.length - 1)) return null;
         return ar[index];
     }
 
+    @Override
+    public Object remove(int index) {
+        int arEnd = ar.length - 1;
 
+        if ((index < 0) || (index > arEnd)) return null;
+
+        Object tmpObj = ar[index];
+        System.arraycopy(ar, index + 1, ar, index, arEnd - index);
+        ar[arEnd] = null;
+        size--;
+
+        return tmpObj;
+    }
+
+
+
+    @Override
     public int size() {
         return size;
     }
@@ -149,23 +168,7 @@ public class MyArrayList implements MyList {
 
         return false;
     }
-    /*
-    public boolean	remove(int ind){
-        int actualSize = this.getSize();
 
-        if ((ind < 0) || (ind > actualSize)) {
-            System.out.println("Index is out of range.");
-            return false;
-        }
-
-        for (int j=ind; j<actualSize-1;j++){
-            this.getAr()[j]=this.ar[j+1];
-        }
-        this.setSize(actualSize-1);
-
-        return true;
-    }
-    */
 
     public int indexOf(Object o) {
         int ind = -1;
@@ -203,20 +206,3 @@ public class MyArrayList implements MyList {
     }
 
 }
-
-
-    /*
-    int lastIndexOf(Object o){
-        int ind = -1;
-
-        int actualSize = this.getSize();
-        for (int i=actualSize-1; i>=0 ; i--){
-            if (this.equals(o, i)){
-                ind = i;
-                return ind;
-            }
-        }
-
-        return ind;
-    }
-*/
