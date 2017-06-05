@@ -109,6 +109,26 @@ public class MyArrayListTest {
 
     }
 
+    @Test
+    public void checkContainsObject() {
+        assertFalse(myArList.contains(null));
+        assertFalse(myArList.contains(7));
+        assertFalse(myArList.contains("sss"));
+
+        assertTrue(myArList.contains(1));
+        assertTrue(myArList.contains(3));
+        assertTrue(myArList.contains(6));
+
+        assertTrue(myArList.contains(myArList.getAr()[1]));
+
+        MyArrayList myArList2 = new MyArrayList(myArList);
+        myArList2.getAr()[1] = null;
+        assertTrue(myArList.contains(null));
+        assertFalse(myArList == myArList2);
+        assertTrue(myArList.equals(myArList2));
+
+    }
+
 /*    @After
     public void tearDown(){
     }*/

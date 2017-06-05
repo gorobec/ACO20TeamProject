@@ -55,18 +55,17 @@ public class MyArrayList implements MyList {
 
         if (size == ar.length) {
             Object[] newAr = new Object[ar.length * 15 / 10];
-            System.arraycopy(ar, index, newAr, index + 1, ar.length - index );
+            System.arraycopy(ar, index, newAr, index + 1, ar.length - index);
             System.arraycopy(ar, 0, newAr, 0, index);
             ar = newAr;
         } else {
-            System.arraycopy(ar, index, ar, index + 1, ar.length - index -1 );
+            System.arraycopy(ar, index, ar, index + 1, ar.length - index - 1);
         }
 
         ar[index] = o;
         size++;
         return true;
     }
-
 
     @Override
     public Object get(int index) {
@@ -105,6 +104,15 @@ public class MyArrayList implements MyList {
         }
         ar[size++] = o;
         return true;
+    }
+
+    public boolean contains(Object o) {
+        for (int i = 0; i < size; i++) {
+            if (o == null && getAr()[i] == null) return true;
+            if (o != null && o.equals(getAr()[i])) return true;
+        }
+
+        return false;
     }
 
 
@@ -166,14 +174,6 @@ public class MyArrayList implements MyList {
         }
     }
 
-    public boolean contains(Object o) {
-        for (int i = 0; i < this.size; i++) {
-            if (this.equals(o, i)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public boolean remove(Object o) {
 
