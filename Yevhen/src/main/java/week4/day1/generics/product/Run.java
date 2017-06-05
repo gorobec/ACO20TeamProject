@@ -21,6 +21,8 @@ public class Run {
         /*Container<String> container2 = new Container<>();
         container2.add("String");*/
 
+        System.out.println(container);
+
     }
 
 

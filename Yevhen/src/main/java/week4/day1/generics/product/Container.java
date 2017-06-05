@@ -1,5 +1,6 @@
 package week4.day1.generics.product;
 
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
  * @author Yevhen Vorobiei
  * @since JDK 1.8
  */
-public class Container<T extends Product & Comparable<Product>> {
+public class Container<T extends Comparable<Product>> {
     private final List<T> items;
 
     public Container() {

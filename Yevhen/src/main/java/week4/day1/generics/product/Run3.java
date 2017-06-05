@@ -18,6 +18,7 @@ public class Run3 {
         Utils.copy(cameras, products);
         Utils.copy(cameras, list);
         Utils.copy(cameras, cameras);
+//        Utils.copy(new ArrayList<String>(), list);
 
 //        Utils.copy(cameras, phones); // - NOT allowed
 //        Utils.copy(products, phones); // - NOT allowed
