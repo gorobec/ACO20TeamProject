@@ -4,10 +4,10 @@ package datastructures;
  * base template interface for MyList
  */
 interface MyList extends MyCollection {
-    // boolean add(Object o, int index);
+    boolean add(Object o, int index);
     Object get(int index);                //  Returns the element at the specified position in this list.
     Object remove(int index);             //  Removes the element at the specified position in this list (optional operation).
-    // boolean set(Object o, int index);     //  Replaces the element at the specified position in this list with the specified element (optional operation).
+    boolean set(Object o, int index);     //  Replaces the element at the specified position in this list with the specified element (optional operation).
 }
 
 

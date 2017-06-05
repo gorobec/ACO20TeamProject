@@ -49,19 +49,24 @@ public class MyArrayList implements MyList {
     }
 
     @Override
-    public boolean add(Object o) {
-        int arEnd = ar.length;
-        if (size == arEnd) {
-            Object[] newAr = new Object[arEnd * 15 / 10];
-            System.arraycopy(ar, 0, newAr, 0, arEnd);
+    public boolean add(Object o, int index) {
+
+        if ((index < 0) || (index > ar.length - 1)) return false;
+
+        if (size == ar.length) {
+            Object[] newAr = new Object[ar.length * 15 / 10];
+            System.arraycopy(ar, index, newAr, index + 1, ar.length - index );
+            System.arraycopy(ar, 0, newAr, 0, index);
             ar = newAr;
-            ar[size++] = o;
-            return true;
         } else {
-            ar[size++] = o;
-            return true;
+            System.arraycopy(ar, index, ar, index + 1, ar.length - index -1 );
         }
+
+        ar[index] = o;
+        size++;
+        return true;
     }
+
 
     @Override
     public Object get(int index) {
@@ -83,6 +88,24 @@ public class MyArrayList implements MyList {
         return tmpObj;
     }
 
+    @Override
+    public boolean set(Object o, int index) {
+        if ((index < 0) || (index > ar.length - 1)) return false;
+        this.ar[index] = o;
+        return true;
+    }
+
+    @Override
+    public boolean add(Object o) {
+        int arEnd = ar.length;
+        if (size == arEnd) {
+            Object[] newAr = new Object[arEnd * 15 / 10];
+            System.arraycopy(ar, 0, newAr, 0, arEnd);
+            ar = newAr;
+        }
+        ar[size++] = o;
+        return true;
+    }
 
 
     @Override
@@ -184,16 +207,6 @@ public class MyArrayList implements MyList {
         return ind;
     }
 
-    public boolean set(int index, Object o) {
-        if ((index < 0) || (index > this.size)) {
-            System.out.println("Index is out of range.");
-            return false;
-        }
-
-        this.ar[index] = o;
-
-        return true;
-    }
 
     public String print() {
 
