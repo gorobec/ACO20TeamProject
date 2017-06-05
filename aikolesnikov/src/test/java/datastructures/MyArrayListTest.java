@@ -24,7 +24,6 @@ public class MyArrayListTest {
         myArList = new MyArrayList(array);
     }
 
-
     @Test
     public void addObjectIndex() {
         // add with nonexistent index
@@ -179,6 +178,20 @@ public class MyArrayListTest {
         assertFalse(myArList.isEmpty());
         myArList.clear();
         assertTrue(myArList.isEmpty());
+    }
+
+    @Test
+    public void checkIndexOf(){
+        assertTrue(myArList.indexOf(-1)==-1);
+        assertTrue(myArList.indexOf(7)==-1);
+        assertTrue(myArList.indexOf(null)==-1);
+
+        assertTrue(myArList.indexOf(1)==0);
+        assertTrue(myArList.indexOf(6)==5);
+        assertTrue(myArList.indexOf(3)==2);
+
+        myArList.getAr()[2]=null;
+        assertTrue(myArList.indexOf(null)==2);
     }
 
 

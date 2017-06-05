@@ -151,6 +151,7 @@ public class MyArrayList implements MyList {
         return size;
     }
 
+
     public boolean equals(MyArrayList o) {
 
         if ((this.ar == null) && (o == null)) return true;
