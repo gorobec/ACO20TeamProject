@@ -168,7 +168,7 @@ public class MyLinkedList<T> implements MyList<T> {
 
     }
 
-    private class MyIterator implements Iterator {
+    private class MyIterator implements Iterator<T> {
 
         MyNode<T> cursor;
 

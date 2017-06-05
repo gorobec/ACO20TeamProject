@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class ArrayUtils {
@@ -78,6 +79,48 @@ public class ArrayUtils {
             else if (start > end) return false;
             else {
                 if (i < sortedArray[mid]) {
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
+                }
+            }
+        }
+    }
+
+    // HOMEWORK binary search - parametrized array and object
+    public static<T extends Comparable<T>> boolean binarySearch(T[] sortedArray, T object) {
+        int start = 0;
+        int end = sortedArray.length - 1;
+        int mid;
+
+        while (true) {
+            mid = (start + end) / 2;
+
+            if (sortedArray[mid].compareTo(object) == 0) return true;
+            else if (start > end) return false;
+            else {
+                if (sortedArray[mid].compareTo(object) > 0) {
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
+                }
+            }
+        }
+    }
+
+    // HOMEWORK binary search - parametrized array, object and comparator
+    public static<T> boolean binarySearch(T[] sortedArray, T object, Comparator<T> comparator) {
+        int start = 0;
+        int end = sortedArray.length - 1;
+        int mid;
+
+        while (true) {
+            mid = (start + end) / 2;
+
+            if (comparator.compare(sortedArray[mid], object) == 0) return true;
+            else if (start > end) return false;
+            else {
+                if (comparator.compare(sortedArray[mid], object) > 0) {
                     end = mid - 1;
                 } else {
                     start = mid + 1;
