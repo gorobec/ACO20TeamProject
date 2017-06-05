@@ -45,6 +45,26 @@ public class ArrayUtils {
         System.out.println();
     }
 
+    public static boolean binarySearch(Object[] array, Object o){
+        if (array.length == 0) return false;
+        int start = 0;
+        int end = array.length - 1;
+        int result;
+
+        while (start <= end) {
+            int middle = (start + end) / 2;
+            Comparable comparable = (Comparable) o;
+            result = comparable.compareTo(array[middle]);
+            if (result > 0) {
+                start = middle + 1;
+            } else if (result < 0) {
+                end = middle - 1;
+            } else return true;
+        }
+
+        return false;
+    }
+
     // binary search
     public static boolean binarySearch(int[] sortedArray, int i) {
         int start = 0;

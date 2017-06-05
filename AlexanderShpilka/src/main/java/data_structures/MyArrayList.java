@@ -2,28 +2,30 @@ package data_structures;
 
 import java.util.Iterator;
 
-public class MyArrayList implements MyList {
+public class MyArrayList<T> implements MyList<T> {
 
     private static final int DEFAULT_CAPACITY = 10;
-    private Object[] elementData;
+    private T[] elementData;
     private int size;
 
+    @SuppressWarnings(value = "unchecked")
     public MyArrayList(int capacity) {
-        elementData = new Object[capacity];
+        elementData = (T[]) new Object[capacity];
     }
     public MyArrayList() {
         this(DEFAULT_CAPACITY);
     }
 
     @Override
-    public boolean add(Object o) {
+    public boolean add(T o) {
         if(size == elementData.length) ensureCapacity();
         elementData[size++] = o;
         return true;
     }
 
+    @SuppressWarnings(value = "unchecked")
     private void ensureCapacity() {
-        Object[] newElementData = new Object[(elementData.length * 3 )/ 2 + 1];
+        T[] newElementData = (T[]) new Object[(elementData.length * 3 )/ 2 + 1];
         System.arraycopy(elementData, 0, newElementData, 0, size);
         elementData = newElementData;
     }
@@ -88,7 +90,7 @@ public class MyArrayList implements MyList {
     }
 
     @Override
-    public boolean add(Object o, int index) {
+    public boolean add(T o, int index) {
         if (index < 0 || index > size) return false;
         if (size == elementData.length) ensureCapacity();
         System.arraycopy(elementData, index, elementData, index + 1, size - index);
@@ -105,17 +107,17 @@ public class MyArrayList implements MyList {
     }*/
 
     @Override
-    public Object get (int index) {
+    public T get (int index) {
         if (index < 0 || index > size) return null;
         return elementData[index];
     }
 
     @Override
-    public Object remove(int index) {
+    public T remove(int index) {
         if (index < 0 || index > size - 1) return null;
         // if (size == 0) return null;
 
-        Object toReturn = elementData[index];
+        T toReturn = elementData[index];
         if (index == size - 1) {
             elementData[index] = null;
             size--;
@@ -131,14 +133,14 @@ public class MyArrayList implements MyList {
 
 
     @Override
-    public boolean set(Object o, int index) {
+    public boolean set(T o, int index) {
         if (index < 0 || index > size - 1) return false;
         elementData[index] = o;
         return true;
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return new MyIterator();
     }
 

@@ -204,6 +204,15 @@ public abstract class MyListTest {
     }
 
     @Test
+    public void test_remove_by_index_when_not_empty_right_index() {
+        assertTrue(myList.add("Five"));
+        assertTrue(myList.add("Six"));
+        assertTrue(myList.add("Seven"));
+        assertEquals("Six", myList.remove(1));
+        assertEquals("Seven", myList.get(1));
+    }
+
+    @Test
     public void test_remove_by_index_when_is_empty() {
         assertEquals(null, myList.remove(0));
     }
