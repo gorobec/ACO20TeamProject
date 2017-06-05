@@ -100,6 +100,43 @@ public class MyArrayListTest {
     }
 
     @Test
+    public void checkRemoveObj() {
+
+        Integer val;
+
+        // remove nonexistent
+        val = -1;
+        assertFalse(myArList.remove(val));
+        val = 7;
+        assertFalse(myArList.remove(val));
+
+        // remove last
+        val = 6;
+        assertEquals(myArList.size(), 6);
+        assertTrue(myArList.remove(val));
+        assertNull(myArList.getAr()[5]);
+        assertEquals(myArList.getAr()[4], 5);
+
+        assertEquals(myArList.size(), 5);
+
+        // remove first
+        val = 1;
+        assertTrue(myArList.remove(val));
+        assertEquals(myArList.getAr()[0], 2);
+        assertEquals(myArList.size(), 4);
+
+        // remove second
+        val = 3;
+        assertTrue(myArList.remove(val));
+        assertEquals(myArList.getAr()[1], 4);
+        assertEquals(myArList.size(), 3);
+
+        myArList.getAr()[1]=null;
+        assertTrue(myArList.remove(null));
+        assertFalse(myArList.remove(null));
+    }
+
+    @Test
     public void checkObjectSet() {
         assertFalse(myArList.set(1, -1));
         assertFalse(myArList.set(1, 6));
@@ -129,7 +166,23 @@ public class MyArrayListTest {
 
     }
 
-/*    @After
+    @Test
+    public void checkClear() {
+        myArList.clear();
+        assertTrue(myArList.size() == 0);
+        assertTrue(myArList.getAr()[0] == null);
+        assertTrue(myArList.getAr()[myArList.getAr().length - 1] == null);
+    }
+
+    @Test
+    public void checkIsEmpty() {
+        assertFalse(myArList.isEmpty());
+        myArList.clear();
+        assertTrue(myArList.isEmpty());
+    }
+
+
+    /*    @After
     public void tearDown(){
     }*/
 

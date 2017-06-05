@@ -106,42 +106,49 @@ public class MyArrayList implements MyList {
         return true;
     }
 
+    @Override
     public boolean contains(Object o) {
         for (int i = 0; i < size; i++) {
-            if (o == null && getAr()[i] == null) return true;
-            if (o != null && o.equals(getAr()[i])) return true;
+            if (o == null && ar[i] == null) return true;
+            if (o != null && o.equals(ar[i])) return true;
         }
 
         return false;
     }
 
+    @Override
+    public void clear() {
+        // not sure it was a good way
+        // MyArrayList tmp = new MyArrayList();
+        // this.size = tmp.size;
+        // this.ar = tmp.ar;
+
+        for (int i = 0; i < size; i++) {
+            ar[i] = null;
+        }
+        size = 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        int ind = indexOf(o);
+
+        if (ind !=-1) {
+            remove(ind);
+            return true;
+        }
+
+        return false;
+    }
 
     @Override
     public int size() {
         return size;
-    }
-
-    public void resize(int newSize) {
-
-        int actualSize = this.getSize();
-
-        if (newSize == actualSize) {
-            System.out.println("The same size. Resizing is skipped.");
-            return;
-        }
-        actualSize = (this.getSize() > newSize) ? newSize : this.getSize();
-
-        MyArrayList newMyArrayList = new MyArrayList(newSize);
-        for (int i = 0; i < actualSize; i++) {
-            newMyArrayList.getAr()[i] = this.getAr()[i];
-        }
-
-        this.setSize(newSize);
-        this.setAr(newMyArrayList.getAr());
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
     }
 
     public boolean equals(MyArrayList o) {
@@ -164,58 +171,28 @@ public class MyArrayList implements MyList {
     }
 
     public boolean equals(Object o, int ind) {
-        return ((o == null) ? (this.getAr()[ind] == null) : (this.getAr()[ind].equals(o)));
+        return ((o == null) ? (getAr()[ind] == null) : (getAr()[ind].equals(o)));
     }
-
-    public void clear() {
-        this.resize(initSize);
-        for (int i = 0; i < initSize; i++) {
-            this.getAr()[i] = null;
-        }
-    }
-
-
-    public boolean remove(Object o) {
-
-        int actualSize = this.size;
-
-        for (int i = 0; i < actualSize; i++) {
-            if (this.equals(o, i)) {
-                for (int j = i; j < this.size - 1; j++) {
-                    this.ar[j] = this.ar[j + 1];
-                }
-                this.setSize(actualSize - 1);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
 
     public int indexOf(Object o) {
-        int ind = -1;
-
-        int actualSize = this.getSize();
-        for (int i = 0; i < actualSize; i++) {
+        for (int i = 0; i < size; i++) {
             if (this.equals(o, i)) {
-                ind = i;
-                return ind;
+                return i;
             }
         }
-
-        return ind;
+        return -1;
     }
 
 
+    /*
     public String print() {
 
         String str = "";
-        for (int i = 0; i < this.size; i++) {
-            str = (i < size - 1) ? (str + this.ar[i] + ", ") : (str + this.ar[i]);
+        for (int i = 0; i < size; i++) {
+            str = (i < size - 1) ? (str + ar[i] + ", ") : (str + ar[i]);
         }
 
         return str;
     }
-
+*/
 }
