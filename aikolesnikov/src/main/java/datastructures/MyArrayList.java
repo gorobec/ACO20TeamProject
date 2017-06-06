@@ -1,20 +1,18 @@
 package datastructures;
 
-import java.util.logging.Logger;
-
 /**
  * MyArrayLisr Class
  */
 public class MyArrayList implements MyList {
 
-    private static final int initSize = 10;
+    private static final int INIT_SIZE = 10;
 
     private int size;
-    private Object[] ar;
+    Object[] ar;
 
     public MyArrayList() {
-        this.size = initSize;
-        this.ar = new Object[initSize];
+        this.size = INIT_SIZE;
+        this.ar = new Object[INIT_SIZE];
     }
 
     public MyArrayList(MyArrayList o) {
@@ -32,21 +30,6 @@ public class MyArrayList implements MyList {
         this.ar = new Object[initialCapacity];
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public Object[] getAr() {
-        return ar;
-    }
-
-    public void setAr(Object[] ar) {
-        this.ar = ar;
-    }
 
     @Override
     public boolean add(Object o, int index) {
@@ -75,13 +58,11 @@ public class MyArrayList implements MyList {
 
     @Override
     public Object remove(int index) {
-        int arEnd = ar.length - 1;
-
-        if ((index < 0) || (index > arEnd)) return null;
+        if ((index < 0) || (index > size - 1)) return null;
 
         Object tmpObj = ar[index];
-        System.arraycopy(ar, index + 1, ar, index, arEnd - index);
-        ar[arEnd] = null;
+        System.arraycopy(ar, index + 1, ar, index, size - index - 1);
+        ar[size - 1] = null;
         size--;
 
         return tmpObj;
@@ -89,8 +70,8 @@ public class MyArrayList implements MyList {
 
     @Override
     public boolean set(Object o, int index) {
-        if ((index < 0) || (index > ar.length - 1)) return false;
-        this.ar[index] = o;
+        if ((index < 0) || (index > size - 1)) return false;
+        ar[index] = o;
         return true;
     }
 
@@ -108,9 +89,15 @@ public class MyArrayList implements MyList {
 
     @Override
     public boolean contains(Object o) {
-        for (int i = 0; i < size; i++) {
-            if (o == null && ar[i] == null) return true;
-            if (o != null && o.equals(ar[i])) return true;
+
+        if (o == null) {
+            for (int i = 0; i < size; i++) {
+                if (ar[i] == null) return true;
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (o.equals(ar[i])) return true;
+            }
         }
 
         return false;
@@ -120,8 +107,8 @@ public class MyArrayList implements MyList {
     public void clear() {
         // not sure it was a good way
         // MyArrayList tmp = new MyArrayList();
-        // this.size = tmp.size;
-        // this.ar = tmp.ar;
+        // size = tmp.size;
+        // ar = tmp.ar;
 
         for (int i = 0; i < size; i++) {
             ar[i] = null;
@@ -138,7 +125,7 @@ public class MyArrayList implements MyList {
     public boolean remove(Object o) {
         int ind = indexOf(o);
 
-        if (ind !=-1) {
+        if (ind != -1) {
             remove(ind);
             return true;
         }
@@ -152,35 +139,19 @@ public class MyArrayList implements MyList {
     }
 
 
-    public boolean equals(MyArrayList o) {
-
-        if ((this.ar == null) && (o == null)) return true;
-
-        int actualSize = this.size;
-        if (!(actualSize == o.size)) return false;
-
-        for (int i = 0; i < actualSize; i++) {
-            if ((this.getAr()[i] == null) && !(o.getAr()[i] == null)) return false;
-            if (!(this.getAr()[i] == null) && (o.getAr()[i] == null)) return false;
-
-            if (!((this.getAr()[i] == null) || (o.getAr()[i] == null))) {
-                if (!(this.getAr()[i].equals(o.getAr()[i]))) return false;
-            }
-        }
-
-        return true;
-    }
-
     public boolean equals(Object o, int ind) {
-        return ((o == null) ? (getAr()[ind] == null) : (getAr()[ind].equals(o)));
+        return ((o == null) ? (ar[ind] == null) : (ar[ind].equals(o)));
     }
 
     public int indexOf(Object o) {
         for (int i = 0; i < size; i++) {
-            if (this.equals(o, i)) {
-                return i;
+            if (o==null){
+                if (ar[i]==null) return i;
+            } else {
+                if (o.equals(ar[i])) return i;
             }
         }
+
         return -1;
     }
 
