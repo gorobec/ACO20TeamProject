@@ -50,6 +50,13 @@ public class ArrayUtilsTest {
 
         assertTrue(ArrayUtils.binarySearch(array, 6));
     }
+    @Test
+    public void test_BinarySearch_element_present_array_one_cell(){
+
+        array = new Object[]{6};
+
+        assertTrue(ArrayUtils.binarySearch(array, 6));
+    }
 
     @Test (expected = NullPointerException.class)
     public void test_BinarySearch_null_array(){
