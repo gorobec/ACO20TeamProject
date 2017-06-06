@@ -12,7 +12,6 @@ public class Cat {
     Cat(String name) {
         this.name = name;
         cats.add(this);
-        if (cats.size() == 10) printCats();
     }
 
     public String getName() {
@@ -30,10 +29,11 @@ public class Cat {
     }
 
     public static void main(String[] args) {
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 9; i++) {
             Cat c = new Cat("name" + i);
         }
-
+        Cat c = new Cat("name10");
+        c.printCats();
     }
 
 }
