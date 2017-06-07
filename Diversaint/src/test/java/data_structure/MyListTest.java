@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by macbook on 06.06.17.
  */
-public abstract class MyListTest<T> {
+public abstract class MyListTest {
 
     protected MyList myList;
 

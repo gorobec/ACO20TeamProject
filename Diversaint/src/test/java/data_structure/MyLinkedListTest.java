@@ -3,9 +3,14 @@ package data_structure;
 /**
  * Created by macbook on 06.06.17.
  */
-public class MyLinkedListTest<T> extends MyListTest<T>{
+public class MyLinkedListTest extends MyDequeTest{
+    protected MyLinkedList myLiList;
     @Override
     public void setUp() {
-        myList = new MyLinkedList<T>();
+        myList = new MyLinkedList();
+        myLiList = new MyLinkedList();
     }
+
+
+
 }
