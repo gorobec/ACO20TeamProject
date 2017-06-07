@@ -1,18 +1,46 @@
 package utils;
+
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
 import java.util.Arrays;
-import static org.junit.Assert.assertEquals;
+import java.util.Comparator;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class ArrayUtilsTest {
-    String[] array;
+   private String[] array;
+    private static Comparator<String> comparator;
+
+
+    @BeforeClass
+    public static void setComparator(){
+        comparator = new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareTo(s2);
+            }
+        };
+    }
 
     @Before
     public void setUp() {
         array = new String[10];
+        array[0] = "One";
+        array[1] = "Two";
+        array[2] = "Three";
+        array[3] = "Four";
+        array[4] = "Five";
+        array[5] = "Six";
+        array[6] = "Seven";
+        array[7] = "Eight";
+        array[8] = "Nine";
+        array[9] = "Ten";
+        Arrays.sort(array);
+
     }
 
     @After
@@ -22,81 +50,53 @@ public class ArrayUtilsTest {
 
     @Test
     public void test_binarySearch_when_present_at_the_beginning() {
-        array[0] = "One";
-        array[1] = "Two";
-        array[2] = "Three";
-        array[3] = "Four";
-        array[4] = "Five";
-        array[5] = "Six";
-        array[6] = "Seven";
-        array[7] = "Eight";
-        array[8] = "Nine";
-        array[9] = "Ten";
-        Arrays.sort(array);
+
         assertTrue(ArrayUtils.binarySearch(array, "Eight"));
     }
 
     @Test
     public void test_binarySearch_when_present_at_the_end() {
-        array[0] = "One";
-        array[1] = "Two";
-        array[2] = "Three";
-        array[3] = "Four";
-        array[4] = "Five";
-        array[5] = "Six";
-        array[6] = "Seven";
-        array[7] = "Eight";
-        array[8] = "Nine";
-        array[9] = "Ten";
-        Arrays.sort(array);
         assertTrue(ArrayUtils.binarySearch(array, "Two"));
     }
 
     @Test
     public void test_binarySearch_when_present_in_the_middle() {
-        array[0] = "One";
-        array[1] = "Two";
-        array[2] = "Three";
-        array[3] = "Four";
-        array[4] = "Five";
-        array[5] = "Six";
-        array[6] = "Seven";
-        array[7] = "Eight";
-        array[8] = "Nine";
-        array[9] = "Ten";
-        Arrays.sort(array);
         assertTrue(ArrayUtils.binarySearch(array, "One"));
     }
 
     @Test
     public void test_binarySearch_when_not_present() {
-        array[0] = "One";
-        array[1] = "Two";
-        array[2] = "Three";
-        array[3] = "Four";
-        array[4] = "Five";
-        array[5] = "Six";
-        array[6] = "Seven";
-        array[7] = "Eight";
-        array[8] = "Nine";
-        array[9] = "Ten";
-        Arrays.sort(array);
         assertFalse(ArrayUtils.binarySearch(array, "Fifty"));
     }
 
     @Test
     public void test_binarySearch_when_same_elements() {
-        array[0] = "One";
-        array[1] = "Two";
-        array[2] = "Three";
-        array[3] = "One";
-        array[4] = "Two";
-        array[5] = "Three";
-        array[6] = "One";
-        array[7] = "Two";
-        array[8] = "Three";
-        array[9] = "One";
-        Arrays.sort(array);
         assertTrue(ArrayUtils.binarySearch(array, "Two"));
+    }
+
+    @Test
+    public void test_binarySearch_when_present_at_the_beginning_with_comparator() {
+
+        assertTrue(ArrayUtils.binarySearch(array, "Eight", comparator));
+    }
+
+    @Test
+    public void test_binarySearch_when_present_at_the_end_with_comparator() {
+        assertTrue(ArrayUtils.binarySearch(array, "Two", comparator));
+    }
+
+    @Test
+    public void test_binarySearch_when_present_in_the_middle_with_comparator() {
+        assertTrue(ArrayUtils.binarySearch(array, "One", comparator));
+    }
+
+    @Test
+    public void test_binarySearch_when_not_present_with_comparator() {
+        assertFalse(ArrayUtils.binarySearch(array, "Fifty", comparator));
+    }
+
+    @Test
+    public void test_binarySearch_when_same_elements_with_comparator() {
+        assertTrue(ArrayUtils.binarySearch(array, "Two", comparator));
     }
 }
