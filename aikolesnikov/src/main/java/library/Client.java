@@ -1,7 +1,7 @@
 package library;
 
 /**
- * Reader
+ * Client
  */
 public class Client {
     private int id;

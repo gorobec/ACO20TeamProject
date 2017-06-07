@@ -3,7 +3,7 @@ package library;
 import java.util.List;
 
 /**
- * general book
+ * Book
  */
 public abstract class Book {
     private String name;

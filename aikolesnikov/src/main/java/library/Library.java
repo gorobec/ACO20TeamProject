@@ -1,7 +1,7 @@
 package library;
 
 /**
- * base
+ * Library
  */
 public class Library {
 

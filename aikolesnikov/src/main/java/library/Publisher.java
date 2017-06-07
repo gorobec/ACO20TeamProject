@@ -1,7 +1,7 @@
 package library;
 
 /**
- *
+ * Publisher
  */
 public class Publisher {
     int code;

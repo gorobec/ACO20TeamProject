@@ -3,7 +3,7 @@ package library;
 import java.util.Date;
 
 /**
- *
+ * Edition
  */
 public class Edition extends Book {
     private Publisher publisher;
