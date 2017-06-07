@@ -15,7 +15,6 @@ import static org.junit.Assert.assertNull;
 public class MyArrayListTest {
 
     private Object[] array;
-    private Object object;
     private MyArrayList myArList;
 
     @Before

@@ -37,14 +37,9 @@ public class MyArrayList implements MyList {
         if ((index < 0) || (index > ar.length - 1)) return false;
 
         if (size == ar.length) {
-            Object[] newAr = new Object[ar.length * 15 / 10];
-            System.arraycopy(ar, index, newAr, index + 1, ar.length - index);
-            System.arraycopy(ar, 0, newAr, 0, index);
-            ar = newAr;
-        } else {
-            System.arraycopy(ar, index, ar, index + 1, ar.length - index - 1);
+          ensureCapacity();
         }
-
+        System.arraycopy(ar, index, ar, index + 1, ar.length - index - 1);
         ar[index] = o;
         size++;
         return true;
@@ -62,9 +57,7 @@ public class MyArrayList implements MyList {
 
         Object tmpObj = ar[index];
         System.arraycopy(ar, index + 1, ar, index, size - index - 1);
-        ar[size - 1] = null;
-        size--;
-
+        ar[--size] = null;
         return tmpObj;
     }
 
@@ -77,30 +70,22 @@ public class MyArrayList implements MyList {
 
     @Override
     public boolean add(Object o) {
-        int arEnd = ar.length;
-        if (size == arEnd) {
-            Object[] newAr = new Object[arEnd * 15 / 10];
-            System.arraycopy(ar, 0, newAr, 0, arEnd);
-            ar = newAr;
+        if (size == ar.length) {
+            ensureCapacity();
         }
         ar[size++] = o;
         return true;
     }
 
+    private void ensureCapacity() {
+        Object[] newAr = new Object[size * 15 / 10];
+        System.arraycopy(ar, 0, newAr, 0, size);
+        ar = newAr;
+    }
+
     @Override
     public boolean contains(Object o) {
-
-        if (o == null) {
-            for (int i = 0; i < size; i++) {
-                if (ar[i] == null) return true;
-            }
-        } else {
-            for (int i = 0; i < size; i++) {
-                if (o.equals(ar[i])) return true;
-            }
-        }
-
-        return false;
+        return indexOf(o) != -1;
     }
 
     @Override
@@ -139,32 +124,17 @@ public class MyArrayList implements MyList {
     }
 
 
-    public boolean equals(Object o, int ind) {
-        return ((o == null) ? (ar[ind] == null) : (ar[ind].equals(o)));
-    }
-
     public int indexOf(Object o) {
-        for (int i = 0; i < size; i++) {
-            if (o==null){
+        if (o == null){
+            for (int i = 0; i < size; i++) {
                 if (ar[i]==null) return i;
-            } else {
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
                 if (o.equals(ar[i])) return i;
             }
         }
-
         return -1;
     }
 
-
-    /*
-    public String print() {
-
-        String str = "";
-        for (int i = 0; i < size; i++) {
-            str = (i < size - 1) ? (str + ar[i] + ", ") : (str + ar[i]);
-        }
-
-        return str;
-    }
-*/
 }
