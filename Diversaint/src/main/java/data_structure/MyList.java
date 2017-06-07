@@ -3,9 +3,9 @@ package data_structure;
 /**
  * Created by macbook on 25.05.17.
  */
-public interface MyList extends MyCollection {
-    boolean add(Object o, int index);
-    Object get(int index);
+public interface MyList<E> extends MyCollection<E> {
+    boolean add(E o, int index);
+    E get(int index);
     Object remove(int index);
-    boolean set(Object o, int index);
+    boolean set(E o, int index);
 }
