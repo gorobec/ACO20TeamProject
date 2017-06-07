@@ -26,8 +26,7 @@ public class MyLinkedList<T> implements MyList<T>, MyDeque<T> {
 
     @Override
     public boolean offer(T o) {
-        add(o);
-        return true;
+        return add(o);
     }
 
     @Override
@@ -214,14 +213,12 @@ public class MyLinkedList<T> implements MyList<T>, MyDeque<T> {
 
     @Override
     public boolean offerFirst(T o) {
-        add(o, 0);
-        return true;
+        return add(o, 0);
     }
 
     @Override
     public boolean offerLast(T o) {
-        add(o);
-        return true;
+        return add(o);
     }
 
     @Override
