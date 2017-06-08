@@ -1,8 +1,10 @@
+package university;
+
 /**
  * group of students class
  */
 public class Group {
-    protected static final int INIT_GR_SIZE = 5;
+    public static final int INIT_GR_SIZE = 5;
     protected int id;
     protected int size;
     protected Student[] students;
@@ -138,7 +140,7 @@ public class Group {
             else str = str.concat("null;");
         }
 
-        return "Group " + id + " includes:\n" + str;
+        return "university.Group " + id + " includes:\n" + str;
     }
 
     @Override

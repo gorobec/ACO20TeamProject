@@ -1,5 +1,10 @@
+package University;
+
 import org.junit.Assert;
 import org.junit.Test;
+import university.DynamicGroup;
+import university.Group;
+import university.Student;
 
 /**
  * tests for Dynamicgroup
@@ -24,7 +29,7 @@ public class DynamicGroupTests {
 
         Assert.assertTrue(gr1.addStudent(new Student("st_name6")));
         Assert.assertTrue(gr1.addStudent(new Student("name7")));
-        // Assert.assertEquals(gr1.students.length, (Group.INIT_GR_SIZE + 1) * 15 / 10);
+        // Assert.assertEquals(gr1.students.length, (university.Group.INIT_GR_SIZE + 1) * 15 / 10);
         // Assert.assertEquals(gr1.size, 7);
 
         System.out.println(gr1.toString());

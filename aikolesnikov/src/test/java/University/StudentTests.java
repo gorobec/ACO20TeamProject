@@ -1,8 +1,11 @@
+package University;
+
 import org.junit.Assert;
 import org.junit.Test;
+import university.Student;
 
 /**
- * tests for Student class
+ * tests for university.Student class
  */
 public class StudentTests {
 
@@ -20,7 +23,7 @@ public class StudentTests {
         Assert.assertTrue(st4.getSurname().equals("st4_surname"));
         Assert.assertTrue(st4.getAge()==17);
 
-        Assert.assertTrue(st4.toString().equals("Student: {st4_name st4_surname}"));
+        Assert.assertTrue(st4.toString().equals("university.Student: {st4_name st4_surname}"));
 
         Student st5 = new Student("st4_name", "st4_surname", 17);
         Assert.assertFalse(st1.equals(st5));

@@ -1,3 +1,8 @@
+package university;
+
+import university.Group;
+import university.Student;
+
 /**
  * dynamic array
  */

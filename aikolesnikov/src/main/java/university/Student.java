@@ -1,3 +1,5 @@
+package university;
+
 /**
  * student
  */
@@ -50,7 +52,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student: {" + ((this.name == null) ? "" : name) + ((this.surname == null) ? "" : (" " + surname)) + '}';
+        return "university.Student: {" + ((this.name == null) ? "" : name) + ((this.surname == null) ? "" : (" " + surname)) + '}';
     }
 
     @Override
@@ -66,7 +68,7 @@ public class Student {
 
 /*
         return tmpO != null &&
-                // tmpO instanceof Student &&
+                // tmpO instanceof university.Student &&
                 tmpO.getClass() == this.getClass() &&
                 this.toString().equals(tmpO.toString());
 */

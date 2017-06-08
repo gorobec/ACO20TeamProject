@@ -144,7 +144,7 @@ public class MyArrayList<T> implements MyList<T> {
         return new MyIterator();
     }
 
-    private class MyIterator implements Iterator {
+    private class MyIterator implements Iterator<T> {
 
         private int currentPosition;
 
@@ -154,7 +154,7 @@ public class MyArrayList<T> implements MyList<T> {
         }
 
         @Override
-        public Object next() {
+        public T next() {
             return elementData[currentPosition++];
         }
     }

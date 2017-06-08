@@ -30,7 +30,6 @@ public abstract class MyListTest {
         assertTrue(myList.add(null));
     }
 
-
     @Test
     public void test_add_more_than_start_size(){
         assertTrue(myList.add("One"));
@@ -117,7 +116,6 @@ public abstract class MyListTest {
         assertTrue(myList.add("One"));
         assertEquals(1, myList.size());
     }
-
 
     @Test
     public void test_size_more_than_start_size(){
@@ -269,6 +267,16 @@ public abstract class MyListTest {
     }
 
     @Test
+    public void test_set_when_not_empty_correct_index2() {
+        assertTrue(myList.add("One"));
+        assertTrue(myList.add("Two"));
+        assertTrue(myList.add("Three"));
+        assertTrue(myList.add("Five"));
+        assertTrue(myList.set("Four", 3));
+        assertEquals("Four", myList.get(3));
+    }
+
+    @Test
     public void test_add_by_index_when_empty_index_zero() {
         assertTrue(myList.add("One", 0));
         assertEquals("One", myList.get(0));
@@ -339,6 +347,5 @@ public abstract class MyListTest {
         assertEquals("Three", myIterator.next());
         assertFalse(myIterator.hasNext());
     }
-
 
 }
