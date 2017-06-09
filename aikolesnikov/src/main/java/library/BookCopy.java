@@ -51,6 +51,6 @@ public class BookCopy extends Edition {
     }
 
     public final String info() {
-        return this.toString();
+        return toString();
     }
 }
