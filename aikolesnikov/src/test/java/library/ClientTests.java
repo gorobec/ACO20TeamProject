@@ -1,14 +1,20 @@
 package library;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import static library.Client.DEFAULT_CLIENT_NAME;
+import static library.LIB_SETTINGS.DEFAULT_CLIENT_NAME;
 import static org.junit.Assert.*;
 
 /**
  * check readers
  */
 public class ClientTests {
+
+    @Before
+    public void prepareLibraryTest(){
+        Client.setClientCounter(0);
+    }
 
     @Test
     public void checkClient() {

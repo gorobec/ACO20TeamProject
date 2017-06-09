@@ -3,18 +3,24 @@ package library;
 import datastructures.MyArrayList;
 import org.junit.Assert;
 import org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
  *
  */
 public class LibraryTests {
+    Library lib = new Library();
+
+    @Before
+    public void prepareLibraryTest(){
+        lib.getClients().clear();
+        Client.setClientCounter(0);
+    }
+
 
     @Test
     public void checkLibrary() {
-        Library lib = new Library();
-
-        lib.getClients().clear();
 
         Client c1 = new Client();
         Client c2 = new Client();

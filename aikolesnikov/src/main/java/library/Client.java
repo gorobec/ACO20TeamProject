@@ -2,49 +2,63 @@ package library;
 
 import java.util.Arrays;
 
+import static library.LIB_SETTINGS.*;
+
 /**
  * Client
  */
 public class Client {
-    public static final String DEFAULT_CLIENT_NAME = "_CLIENT_";
+
     private static long clientCounter;
 
     private long id;
 
     private String name;
+
     private BookCopy[] readBooks;
     private boolean isBlocked;
-
     Client() {
         clientCounter++;
         this.id = clientCounter;
         this.name = DEFAULT_CLIENT_NAME;
-        readBooks = new BookCopy[]{};
+        readBooks = new BookCopy[BOOK_RENT_LIMIT];
     }
+
     Client(String name) {
         clientCounter++;
         this.id = clientCounter;
         if (name == null) this.name = DEFAULT_CLIENT_NAME;
         else this.name = name;
-        readBooks = new BookCopy[]{};
+        readBooks = new BookCopy[3];
     }
 
     public static long getClientCounter() {
         return clientCounter;
     }
-    public long getId() {return id;}
+    public static void setClientCounter(long clientCounter) {
+        Client.clientCounter = clientCounter;
+    }
+
+    public long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public BookCopy[] getReadBooks() {
         return readBooks;
     }
+
     public boolean isBlocked() {
         return isBlocked;
     }
+
     public void setBlocked(boolean blocked) {
         isBlocked = blocked;
     }

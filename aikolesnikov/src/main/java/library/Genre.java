@@ -7,5 +7,6 @@ public enum Genre {
     DETECTIVE,
     FICTION,
     NOVEL,
-    PROSE
+    PROSE,
+    GENERAL
 }

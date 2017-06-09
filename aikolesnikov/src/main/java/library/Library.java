@@ -2,13 +2,12 @@ package library;
 
 import datastructures.MyArrayList;
 
-import java.util.Arrays;
+import static library.LIB_SETTINGS.LIBRARY_NAME;
 
 /**
  * Library
  */
 public class Library {
-    public static final String LIBRARY_NAME = "LIBRARY";
 
     private String name;
     private MyArrayList books;
@@ -36,7 +35,7 @@ public class Library {
 
         final StringBuilder sb = new StringBuilder("");
         for (int i=0; i<clients.size(); i++) {
-            sb.append(clients.get(i).toString());
+            sb.append(clients.get(i)).toString();
             sb.append("};\n");
         }
         return sb.toString();
