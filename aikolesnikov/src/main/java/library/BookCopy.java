@@ -49,4 +49,8 @@ public class BookCopy extends Edition {
         sb.append('}');
         return sb.toString();
     }
+
+    public final String info() {
+        return this.toString();
+    }
 }
