@@ -30,7 +30,6 @@ public class MyArrayList implements MyList {
         this.ar = new Object[initialCapacity];
     }
 
-
     @Override
     public boolean add(Object o, int index) {
 
@@ -122,8 +121,6 @@ public class MyArrayList implements MyList {
     public int size() {
         return size;
     }
-
-
     public int indexOf(Object o) {
         if (o == null){
             for (int i = 0; i < size; i++) {
@@ -136,5 +133,4 @@ public class MyArrayList implements MyList {
         }
         return -1;
     }
-
 }
