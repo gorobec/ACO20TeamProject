@@ -1,6 +1,6 @@
 package week1.day2;
 
-public class University {
+public class University implements Cloneable{
     private String name;
     private Group[] groups;
     private int size;
@@ -33,6 +33,18 @@ public class University {
         this.name = name;
         groups = new Group[universitySize];
         size = 0;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Group[] getGroups() {
+        return groups;
     }
 
     /*public boolean addGroup(Group group) {
@@ -101,5 +113,15 @@ public class University {
             toReturn += groups[i].asString() + "\n";
         }
         return toReturn;
+    }
+
+    public University clone() throws CloneNotSupportedException {
+        University clone = (University) super.clone();
+        Group[] clones = new Group[groups.length];
+        for (int i = 0; i < size; i++) {
+            clones[i] = groups[i].clone();
+        }
+        clone.groups = clones;
+        return clone;
     }
 }
