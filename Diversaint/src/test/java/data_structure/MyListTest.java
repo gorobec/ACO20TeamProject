@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
  */
 public abstract class MyListTest {
 
-    protected MyList myList;
+    protected MyList<String> myList;
 
     @Before
     public abstract void setUp();
@@ -41,7 +41,7 @@ public abstract class MyListTest {
         assertTrue(myList.add("One"));
         assertTrue(myList.add("Two"));
         assertTrue(myList.add("Three"));
-        assertTrue(myList.add("Four"));
+        assertTrue(myList.add("Fours"));
         assertTrue(myList.add("Five"));
         assertTrue(myList.add("Six"));
         assertTrue(myList.add("Seven"));

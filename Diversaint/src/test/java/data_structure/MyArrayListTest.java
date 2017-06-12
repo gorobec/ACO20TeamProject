@@ -7,6 +7,6 @@ public class MyArrayListTest extends MyListTest {
 
     @Override
     public void setUp() {
-        myList = new MyArrayList();
+        myList = new MyArrayList<>();
     }
 }
