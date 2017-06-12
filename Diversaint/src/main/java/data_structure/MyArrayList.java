@@ -105,7 +105,7 @@ public class MyArrayList<T> implements MyList<T> {
     @Override
     public T remove(int index) {
         if (index < 0 || index > size) return null;
-        T temp = (T) elementData[index];
+        T temp = elementData[index];
         System.arraycopy(elementData, index + 1, elementData, index, size - index - 1);
         if (size != elementData.length)
         elementData[size--] = null;
@@ -125,7 +125,19 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new MyIterator();
     }
 
+    private class MyIterator implements Iterator<T> {
+        private int currentPosition;
+        @Override
+        public boolean hasNext() {
+            return currentPosition < size;
+        }
+
+        @Override
+        public T next() {
+            return elementData[currentPosition++];
+        }
+    }
 }

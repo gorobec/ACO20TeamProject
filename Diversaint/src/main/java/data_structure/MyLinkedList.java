@@ -89,14 +89,13 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
 
     @Override
     public boolean contains(Object o) {
-        if (findNode(o) != null) return true;
-        return false;
+        return findNode(o) != null;
     }
 
     @Override
     public void clear() {
-        MyNode temp = head;
-        MyNode forRemove = temp;
+        MyNode<E> temp = head;
+        MyNode<E> forRemove = temp;
         for (int i = 0; size != 0; i++) {
             temp = forRemove.next;
             removeCurrentNode(forRemove);
@@ -112,7 +111,7 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
     @Override
     public boolean remove(Object o) {
 
-        MyNode forRemove = findNode(o);
+        MyNode<E> forRemove = findNode(o);
         if (forRemove == null) return false;
         removeCurrentNode(forRemove);
         return true;
@@ -320,6 +319,10 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
         MyNode<E> next;
         MyNode<E> previous;
         E value;
+
+        public MyNode() {
+        }
+
         MyNode(E value) {
             this.value = value;
         }
@@ -327,11 +330,12 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
     }
 
     private class MyIterator implements Iterator<E> {
-        private MyNode<E> currentNode;
+        MyNode<E> currentNode;
         int currentPosition;
 
         public MyIterator() {
-            currentNode = head;
+            currentNode = new MyNode();
+            currentNode.next = head;
         }
 
         @Override

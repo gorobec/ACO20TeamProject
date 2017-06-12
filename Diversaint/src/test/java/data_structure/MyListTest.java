@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -344,5 +346,27 @@ public abstract class MyListTest {
         assertTrue(myList.add("Ten"));
         assertFalse(myList.set("Ten", 10));
     }
+
+    @Test
+    public void test_iterator_when_empty(){
+        Iterator iterator = myList.iterator();
+        assertFalse(iterator.hasNext());
+    }
+    @Test
+    public void test_iterator(){
+        assertTrue(myList.add("One"));
+        assertTrue(myList.add("Two"));
+        assertTrue(myList.add("Three"));
+        Iterator iterator = myList.iterator();
+        assertTrue(iterator.hasNext());
+        iterator.next();
+        assertTrue(iterator.hasNext());
+        iterator.next();
+        assertTrue(iterator.hasNext());
+        iterator.next();
+        assertFalse(iterator.hasNext());
+
+    }
+
 
 }
