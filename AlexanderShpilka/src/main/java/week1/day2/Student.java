@@ -1,6 +1,6 @@
 package week1.day2;
 
-public class Student {
+public class Student implements Cloneable{
     private String name;
     private String surName;
     private int age;
@@ -70,5 +70,10 @@ public class Student {
             return true;
 
         return false;*/
+    }
+
+    @Override
+    public Student clone() throws CloneNotSupportedException {
+        return (Student) super.clone();
     }
 }

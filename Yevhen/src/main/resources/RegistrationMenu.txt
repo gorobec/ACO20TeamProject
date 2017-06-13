@@ -1,0 +1,6 @@
+Choose operation:
+
+1. Create user
+2. Delete user
+3. Update user
+4. Find user

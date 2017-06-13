@@ -1,6 +1,6 @@
 package week1.day2;
 
-public class Group {
+public class Group implements Cloneable{
 
     private int groupNumber;
     private Student[] students;
@@ -34,6 +34,18 @@ public class Group {
         this.groupNumber = groupNumber;
         students = new Student[groupSize];
         size = 0;
+    }
+
+    public void setGroupNumber(int groupNumber) {
+        this.groupNumber = groupNumber;
+    }
+
+    public int getGroupNumber() {
+        return groupNumber;
+    }
+
+    public Student[] getStudents() {
+        return students;
     }
 
     public int getSize() {
@@ -144,6 +156,17 @@ public class Group {
             toReturn += students[i].asString() + "\n";
         }
         return toReturn;
+    }
+
+    @Override
+    public Group clone() throws CloneNotSupportedException {
+        Group clone = (Group) super.clone();
+        Student[] clones = new Student[students.length];
+        for (int i = 0; i < size; i++) {
+            clones[i] = students[i].clone();
+        }
+        clone.students = clones;
+        return clone;
     }
 }
 

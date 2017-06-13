@@ -1,8 +1,12 @@
+package University;
+
 import org.junit.Assert;
 import org.junit.Test;
+import university.Group;
+import university.Student;
 
 /**
- * tests for Group class
+ * tests for university.Group class
  */
 public class GroupTests {
     @Test
@@ -47,8 +51,8 @@ public class GroupTests {
         Assert.assertTrue(gr5.getStudents().length == 3);
         Assert.assertTrue(gr5.getSize()==2);
 
-        Assert.assertTrue(gr5.toString().equals("Group 5 includes:\nStudent: " +
-                "{st_name1 st_surname1};null;Student: {st_name3};"));
+        Assert.assertTrue(gr5.toString().equals("university.Group 5 includes:\nuniversity.Student: " +
+                "{st_name1 st_surname1};null;university.Student: {st_name3};"));
 
         Assert.assertFalse(gr5.equals(gr1));
         Assert.assertTrue(gr6.equals(gr5));
