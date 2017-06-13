@@ -9,8 +9,7 @@ public class BookCopy extends Edition {
     private double price;
 
     BookCopy() {
-        bookCounter++;
-        this.id = bookCounter;
+        this.id = ++bookCounter;
     }
 
     public static long getBookCounter() {
@@ -43,9 +42,8 @@ public class BookCopy extends Edition {
         final StringBuilder sb = new StringBuilder("Book{");
         sb.append("id=").append(id);
         sb.append(", price=").append(price);
-        sb.append('{');
+        sb.append(", ");
         sb.append(super.toString());
-        sb.append('}');
         sb.append('}');
         return sb.toString();
     }

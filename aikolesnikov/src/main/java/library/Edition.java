@@ -47,7 +47,7 @@ public class Edition {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Edition{");
+        final StringBuilder sb = new StringBuilder("Edition={");
         sb.append("name='").append(name).append('\'');
         sb.append(", author='").append(author).append('\'');
         sb.append(", genre=").append(genre);

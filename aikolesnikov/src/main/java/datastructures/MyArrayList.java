@@ -26,7 +26,7 @@ public class MyArrayList implements MyList {
     }
 
     public MyArrayList(int initialCapacity) {
-        this.size = initialCapacity;
+        this.size = 0;
         this.ar = new Object[initialCapacity];
     }
 
