@@ -334,7 +334,7 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
         int currentPosition;
 
         public MyIterator() {
-            currentNode = new MyNode();
+            currentNode = new MyNode<>();
             currentNode.next = head;
         }
 

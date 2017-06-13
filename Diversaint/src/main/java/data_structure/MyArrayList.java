@@ -16,7 +16,7 @@ public class MyArrayList<T> implements MyList<T> {
     public MyArrayList() {
         this(DEFAULT_CAPACITY);
     }
-
+    @SuppressWarnings(value = "unchecked")
     public MyArrayList(int capacity) {
         elementData = (T[]) new Object[capacity];
     }
@@ -27,7 +27,7 @@ public class MyArrayList<T> implements MyList<T> {
         elementData[size++] = o;
         return true;
     }
-
+    @SuppressWarnings(value = "unchecked")
     private void ensureCapacity() {
         T[] newElementData = (T[]) new Object[(elementData.length * 3 )/ 2 + 1];
         System.arraycopy(elementData, 0, newElementData, 0, size);
