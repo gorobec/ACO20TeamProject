@@ -1,7 +1,7 @@
 package utils;
 
 /**
- * Created by macbook on 04.06.17.
+ * Created by macbook on 13.06.17.
  */
 public class ArrayUtils {
 
