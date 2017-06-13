@@ -90,9 +90,11 @@ public class MyArrayList<T> implements MyList<T>{
     @Override
     public T get(int index) {
 
+
             if (index < 0 || index >= size){ throw new MyIndexOutOfBoundsException("Index: " + index);}
 
         return elementData[index];
+
     }
 
     @Override

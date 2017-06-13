@@ -3,8 +3,8 @@ package data_structure;
 /**
  * Created by macbook on 25.05.17.
  */
-public interface MyCollection {
-    boolean add(Object o);
+public interface MyCollection<E> extends Iterable<E>{
+    boolean add(E o);
     boolean contains(Object o);
     void clear();
     boolean isEmpty();
