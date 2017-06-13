@@ -10,13 +10,11 @@ import static library.LIB_SETTINGS.*;
 public class Client {
 
     private static long clientCounter;
-
     private long id;
-
     private String name;
-
     private BookCopy[] readBooks;
     private boolean isBlocked;
+
     Client() {
         clientCounter++;
         this.id = clientCounter;
@@ -38,27 +36,21 @@ public class Client {
     public static void setClientCounter(long clientCounter) {
         Client.clientCounter = clientCounter;
     }
-
     public long getId() {
         return id;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public BookCopy[] getReadBooks() {
         return readBooks;
     }
-
     public boolean isBlocked() {
         return isBlocked;
     }
-
     public void setBlocked(boolean blocked) {
         isBlocked = blocked;
     }

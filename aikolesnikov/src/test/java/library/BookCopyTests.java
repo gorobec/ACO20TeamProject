@@ -23,6 +23,6 @@ public class BookCopyTests {
         BookCopy b2 = new BookCopy();
 
         b2.setName("Book_name");
-        System.out.println(b2);
+        // System.out.println(b2);
     }
 }

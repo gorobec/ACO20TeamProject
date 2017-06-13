@@ -23,31 +23,24 @@ public class Edition {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getAuthor() {
         return author;
     }
-
     public void setAuthor(String author) {
         this.author = author;
     }
-
     public Genre getGenre() {
         return genre;
     }
-
     public void setGenre(Genre genre) {
         this.genre = genre;
     }
-
     public int getYear() {
         return Year;
     }
-
     public void setYear(int year) {
         this.Year = year;
     }

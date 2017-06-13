@@ -30,4 +30,5 @@ public class ClientTests {
         assertEquals(c4.getName(), "Name4");
         assertTrue(c4.getId() == 4);
     }
+
 }

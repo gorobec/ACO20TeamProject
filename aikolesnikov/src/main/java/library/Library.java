@@ -25,22 +25,36 @@ public class Library {
         return clients;
     }
 
-    Library(){
+    Library() {
         name = LIBRARY_NAME;
         books = new MyArrayList();
         clients = new MyArrayList();
     }
 
-    public String printListOfClients() {   //    1) посмотреть список читателей
+    //  1) посмотреть список читателей
+    public String printListOfClients() {
 
         final StringBuilder sb = new StringBuilder("");
-        for (int i=0; i<clients.size(); i++) {
+        for (int i = 0; i < clients.size(); i++) {
             sb.append(clients.get(i)).toString();
             sb.append("};\n");
         }
         return sb.toString();
     }
 
+    //  4) добавить читателя в список читателей
+    boolean addReader(Client client) {
+        return (client == null) || clients.contains(client) ? false : clients.add(client);
+    }
+
+    //  8) добавить читателя в черный список (ему нельзя выдавать издания)
+    boolean toBlackList(Client client, boolean include) {
+        if ((client == null) || !(clients.contains(client)))return false;
+        else {
+            client.setBlocked(include);
+            return true;
+        }
+    }
 
     /*
     boolean getBook(BookCopy book, Client reader) {return false;}
@@ -54,12 +68,10 @@ public class Library {
         return false;
     }
 
-      4) добавить читателя в список читателей
       5) выдать издание читателю (если оно есть в наличии).
          Читателю запрещается брать больше 3-х изданий.
       6) посмотреть список изданий, которые находятся у читателей
       7) посмотреть список изданий, которые находятся у конкретного читателя
-      8) добавить читателя в черный список (ему нельзя выдавать издания)
       9) посмотреть издания конкретного автора
       10) посмотреть издания конкретного года
       11) найти издание по названию (ключевым словам). Использовать varargs.

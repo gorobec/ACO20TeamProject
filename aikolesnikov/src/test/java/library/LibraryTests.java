@@ -2,7 +2,11 @@ package library;
 
 import datastructures.MyArrayList;
 import org.junit.Assert;
-import org.junit.Assert.*;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -43,4 +47,22 @@ public class LibraryTests {
         // System.out.println(Client.getClientCounter());
         // System.out.println(lib.printListOfClients());
     }
+
+
+    @Test
+    public void addClient() {
+        Client c1 = new Client();
+        Client c2 = new Client();
+
+        assertTrue(lib.addReader(c1));
+        assertFalse(lib.addReader(c1));
+        assertTrue(lib.addReader(c2));
+        assertFalse(lib.addReader(c2));
+        assertFalse(lib.addReader(null));
+
+        System.out.println(lib.printListOfClients());
+        System.out.println(lib.getClients().size());
+    }
+
+
 }
