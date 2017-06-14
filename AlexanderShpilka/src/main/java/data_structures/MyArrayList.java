@@ -91,12 +91,17 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public boolean add(T o, int index) {
-        if (index < 0 || index > size) return false;
+        if (index < 0 || index > size)
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
         if (size == elementData.length) ensureCapacity();
         System.arraycopy(elementData, index, elementData, index + 1, size - index);
         elementData[index] = o;
         size++;
         return true;
+    }
+
+    private String outOfBoundsMsg(int index) {
+        return "Index: " + index + ", size: " + size;
     }
 
     /*@Override
@@ -108,13 +113,15 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public T get (int index) {
-        if (index < 0 || index > size) return null;
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
         return elementData[index];
     }
 
     @Override
     public T remove(int index) {
-        if (index < 0 || index > size - 1) return null;
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
         // if (size == 0) return null;
 
         T toReturn = elementData[index];
@@ -134,7 +141,8 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public boolean set(T o, int index) {
-        if (index < 0 || index > size - 1) return false;
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
         elementData[index] = o;
         return true;
     }

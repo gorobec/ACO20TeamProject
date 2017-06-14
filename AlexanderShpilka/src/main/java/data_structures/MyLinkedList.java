@@ -107,7 +107,8 @@ public class MyLinkedList<T> implements MyList<T>, MyDeque<T> {
 
     @Override
     public boolean add(T o, int index) {
-        if (index < 0 || index > size) return false;
+        if (index < 0 || index > size)
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
         if (size == 0 || index == size) {
             return add(o);
         }
@@ -133,16 +134,23 @@ public class MyLinkedList<T> implements MyList<T>, MyDeque<T> {
         return true;
     }
 
+    private String outOfBoundsMsg(int index) {
+
+        return "Index: " + index + ", size: " + size;
+    }
+
     @Override
     public T get(int index) {
-        if (index < 0 || index >= size) return null;
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
         MyNode<T> toReturn = findNode(index);
         return toReturn.value;
     }
 
     @Override
     public T remove(int index) {
-        if (index < 0 || index >= size) return null;
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
         MyNode<T> toRemove = findNode(index);
         removeNode(toRemove);
         size--;
@@ -175,7 +183,8 @@ public class MyLinkedList<T> implements MyList<T>, MyDeque<T> {
 
     @Override
     public boolean set(T o, int index) {
-        if (index < 0 || index >= size) return false;
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
         MyNode<T> toReset = findNode(index);
         add(o, index);
         removeNode(toReset);

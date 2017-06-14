@@ -66,6 +66,11 @@ public class MyDequeTest {
         assertEquals(0, myList.size());
     }
 
+    @Test (expected = NoSuchElementException.class)
+    public void test_removeFirst_when_empty() {
+        myList.removeFirst();
+    }
+
     @Test
     public void test_remove_when_not_empty() {
         assertTrue(myList.offer("One"));
@@ -96,6 +101,11 @@ public class MyDequeTest {
         assertTrue(myList.offer("Three"));
         assertEquals("Three", myList.removeLast());
         assertEquals(2, myList.size());
+    }
+
+    @Test (expected = NoSuchElementException.class)
+    public void test_removeLast_when_empty() {
+        myList.removeLast();
     }
 
     @Test
@@ -183,6 +193,11 @@ public class MyDequeTest {
         assertEquals("One", myList.getFirst());
     }
 
+    @Test (expected = NoSuchElementException.class)
+    public void test_getFirst_when_empty() {
+        myList.getFirst();
+    }
+
     @Test
     public void test_getLast_when_one_element_only() {
         assertTrue(myList.offer("One"));
@@ -195,6 +210,11 @@ public class MyDequeTest {
         assertTrue(myList.offer("Two"));
         assertTrue(myList.offer("Three"));
         assertEquals("Three", myList.getLast());
+    }
+
+    @Test (expected = NoSuchElementException.class)
+    public void test_getLast_when_empty() {
+        myList.getLast();
     }
 
     @Test
@@ -374,6 +394,11 @@ public class MyDequeTest {
         assertTrue(myList.offer("Three"));
         assertEquals("One", myList.element());
         assertEquals(3, myList.size());
+    }
+
+    @Test (expected = NoSuchElementException.class)
+    public void test_element_when_empty() {
+        myList.element();
     }
 
     @Test
