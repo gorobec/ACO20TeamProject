@@ -193,12 +193,12 @@ public abstract class MyListTest {
         assertTrue(myList.remove(null));
     }
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void test_remove_by_index_when_not_empty_wrong_index() {
         assertTrue(myList.add("Five"));
         assertTrue(myList.add("Six"));
         assertTrue(myList.add("Seven"));
-        assertEquals(null, myList.remove(3));
+        myList.remove(3);
     }
 
     @Test
@@ -210,12 +210,12 @@ public abstract class MyListTest {
         assertEquals("Seven", myList.get(1));
     }
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void test_remove_by_index_when_is_empty() {
-        assertEquals(null, myList.remove(0));
+        myList.remove(0);
     }
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void test_remove_by_index_first_element_not_empty() {
         assertTrue(myList.add("One"));
         assertTrue(myList.add("Two"));
@@ -229,10 +229,10 @@ public abstract class MyListTest {
         assertTrue(myList.add("Ten"));
         assertEquals("One", myList.remove(0));
         assertEquals("Ten", myList.get(8));
-        assertEquals(null, myList.get(9));
+        myList.get(9);
     }
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void test_remove_by_index_last_element_not_empty() {
         assertTrue(myList.add("One"));
         assertTrue(myList.add("Two"));
@@ -240,21 +240,21 @@ public abstract class MyListTest {
         assertTrue(myList.add("Four"));
         assertTrue(myList.add("Five"));
         assertEquals("Five", myList.remove(4));
-        assertEquals(null, myList.remove(4));
+        myList.remove(4);
     }
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void test_set_when_empty() {
-        assertFalse(myList.set("One", 0));
+        myList.set("One", 0);
     }
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void test_set_when_not_empty_wrong_index() {
         assertTrue(myList.add("One"));
         assertTrue(myList.add("Two"));
         assertTrue(myList.add("Three"));
         assertTrue(myList.add("Four"));
-        assertFalse(myList.set("Five", 4));
+        myList.set("Five", 4);
     }
 
     @Test
@@ -282,17 +282,17 @@ public abstract class MyListTest {
         assertEquals("One", myList.get(0));
     }
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void test_add_by_index_when_empty_index_one() {
-        assertFalse(myList.add("One", 1));
+        myList.add("One", 1);
     }
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void test_add_by_index_when_not_empty_wrong_index() {
         assertTrue(myList.add("One"));
         assertTrue(myList.add("Two"));
         assertTrue(myList.add("Three"));
-        assertFalse(myList.add("Four", 4));
+        myList.add("Four", 4);
     }
 
     @Test
@@ -347,5 +347,23 @@ public abstract class MyListTest {
         assertEquals("Three", myIterator.next());
         assertFalse(myIterator.hasNext());
     }
+
+    @Test (expected = IndexOutOfBoundsException.class)
+    public void test_add_wrong_index() {
+        assertTrue(myList.add("One"));
+        assertTrue(myList.add("Two"));
+        myList.add("Three", 3);
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 }
