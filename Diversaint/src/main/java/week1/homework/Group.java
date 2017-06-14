@@ -5,9 +5,9 @@ import java.util.ArrayList;
 /**
  * Created by saint on 17.05.17.
  */
-public class Group {
+public class Group implements Cloneable{
     private int groupNumber;
-    private Student[] students;
+    protected Student[] students;
     private int size;
 
     private int countStudents(Student[] students) {
@@ -178,6 +178,17 @@ public class Group {
         if (group1.groupNumber == this.groupNumber)
             return true;
         return false;
+    }
+
+    @Override
+    protected Group clone() throws CloneNotSupportedException {
+        Student[] cloneStudents = new Student[students.length];
+        for (int i = 0; i < students.length; i++) {
+            cloneStudents[i] = students[i].clone();
+        }
+        Group clone = (Group) super.clone();
+        clone.students = cloneStudents;
+        return clone;
     }
 
 }

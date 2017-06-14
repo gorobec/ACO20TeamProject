@@ -1,9 +1,11 @@
 package week1.homework;
 
+import javax.jws.Oneway;
+
 /**
  * Created by saint on 18.05.17.
  */
-public class University {
+public class University implements Cloneable{
     private String name;
     private Group[] groups;
     private int size;
@@ -68,5 +70,31 @@ public class University {
         return true;
 
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof University)) throw new ClassCastException();
+        if (this.groups.length != ((University) obj).groups.length) return false;
+        for (int i = 0; i < this.groups.length; i++) {
+            if(!(this.groups[i].equals(((University) obj).groups[i]))) return false;
+            for (int j = 0; j < this.groups[i].students.length; j++) {
+                if (!(this.groups[i].students[j].equals(((University) obj).groups[i].students[j]))) return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public University clone() throws CloneNotSupportedException {
+        Group[] cloneGroups = new Group[groups.length];
+        for (int i = 0; i < groups.length; i++) {
+            cloneGroups[i] = groups[i].clone();
+        }
+        University clone = (University) super.clone();
+        clone.groups = cloneGroups;
+        return clone;
+    }
+
 
 }
