@@ -1,6 +1,7 @@
 package data_structure;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Created by macbook on 27.05.17.
@@ -112,13 +113,13 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
     public boolean remove(Object o) {
 
         MyNode<E> forRemove = findNode(o);
-        if (forRemove == null) return false;
+        if (forRemove == null) throw new NoSuchElementException();
         removeCurrentNode(forRemove);
         return true;
     }
 
     private E removeCurrentNode(MyNode<E> forRemove) {
-        if(forRemove == null) return null;
+        if(forRemove == null) throw new NoSuchElementException();
         E temp;
         if(head == tail) head = tail = null;
         else if(forRemove == head) {
@@ -169,7 +170,7 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
 
     @Override
     public boolean add(E element, int index) {
-        if (!isPositionIndex(index)) return false;
+        if (!isPositionIndex(index)) throw new IndexOutOfBoundsException("Index: " + index+", Size: " + size);;
         if (index == 0) addFirst(element);
         if (index == size) addLast(element);
         MyNode<E> node = new MyNode<>(element);
@@ -182,13 +183,13 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
 
     @Override
     public E get(int index) {
-        if (!isElementIndex(index)) return null;
+        if (!isElementIndex(index)) throw new IndexOutOfBoundsException("Index: " + index+", Size: " + size);;
         return node(index).value;
     }
 
     @Override
     public E remove(int index) {
-        if (!isElementIndex(index)) return null;
+        if (!isElementIndex(index)) throw new IndexOutOfBoundsException("Index: " + index+", Size: " + size);
         if (index == 0) return removeFirst();
         if (index == size - 1) return removeLast();
         return removeCurrentNode(node(index));
@@ -196,7 +197,7 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
 
     @Override
     public boolean set(E o, int index) {
-        if (!isElementIndex(index)) return false;
+        if (!isElementIndex(index)) throw new IndexOutOfBoundsException("Index: " + index+", Size: " + size);
         node(index).value = o;
         return true;
     }
@@ -223,14 +224,14 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
 
     @Override
     public E getFirst() {
-        if (size == 0) return null;
+        if (size == 0) throw new NoSuchElementException("List is empty");
         final MyNode<E> node = head;
         return node.value;
     }
 
     @Override
     public E getLast() {
-        if (size == 0) return null;
+        if (size == 0) throw new NoSuchElementException("List is empty");
         final MyNode<E> node = tail;
         return node.value;
 
@@ -258,7 +259,9 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
 
     @Override
     public E peek() {
-        return getFirst();
+        //MyNode<E> res = this.head;
+        //return res == null ? null : res.value;
+        return size == 0 ? null : getFirst();
     }
 
     @Override
@@ -275,22 +278,22 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
 
     @Override
     public E peekFirst() {
-        return getFirst();
+        return peek();
     }
 
     @Override
     public E peekLast() {
-        return getLast();
+        return size == 0 ? null : removeFirst();
     }
 
     @Override
     public E pollFirst() {
-        return removeFirst();
+        return poll();
     }
 
     @Override
     public E pollLast() {
-        return removeLast();
+        return size == 0 ? null : removeLast();
     }
 
     @Override
