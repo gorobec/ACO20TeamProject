@@ -1,18 +1,12 @@
 package utils;
 
+import java.util.Comparator;
+
 /**
  * Created by macbook on 04.06.17.
  */
 public class ArrayUtils {
 
-    public static boolean binarySearch(Object[] array, Object o){
-        if (array.length == 0) return false;
-        int start = 0;
-        int end = array.length - 1;
-        int mid = start + (end - start) / 2;
-
-        return false;
-    }
 
     public static <T extends Comparable<T>> void bubbleSort(T[] array){
         T temp;
@@ -59,6 +53,39 @@ public class ArrayUtils {
         temp = array[left];
         array[left] = array[right];
         array[right] = temp;
+    }
+
+    public static <T extends Comparable<T>> boolean binarySearch(T[] array, T object){
+        int start = 0;
+        int end = array.length - 1;
+        int middle;
+        int result;
+        while (start <= end){
+            middle = (start + end) >> 1;
+            result = object.compareTo(array[middle]);
+            if (result > 0)
+                start = middle + 1;
+            else if (result < 0)
+                end = middle - 1;
+            else return true;
+        }
+        return false;
+    }
+    public static <T> boolean binarySearch(T[] array, T object, Comparator<T> comparator){
+        int start = 0;
+        int end = array.length - 1;
+        int middle;
+        int result;
+        while (start <= end){
+            middle = (start + end) >> 1;
+            result = comparator.compare(object, array[middle]);
+            if (result > 0)
+                start = middle + 1;
+            else if (result < 0)
+                end = middle - 1;
+            else return true;
+        }
+        return false;
     }
 
 

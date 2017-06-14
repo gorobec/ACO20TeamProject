@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
  * Created by macbook on 07.06.17.
  */
 public abstract class MyDequeTest {
-    protected MyLinkedList<String> myList;
+    private MyLinkedList<String> myList;
     @Before
     public abstract void setUp();
 
