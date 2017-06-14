@@ -12,6 +12,8 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.print.Book;
+
 /**
  *
  */
@@ -64,6 +66,11 @@ public class LibraryTests {
         assertFalse(lib.addReader(null));
 
         assertEquals(lib.getClients().size(), 2);
+
+        ((Client)lib.getClients().get(0)).setName("BBB_Name");
+        ((Client)lib.getClients().get(1)).setName("AAA_Name");
+        lib.clientsSort(new ClientNameComparator());
+        System.out.println(lib.printListOfClients());
     }
 
     @Test
@@ -82,7 +89,6 @@ public class LibraryTests {
 
     @Test
     public void getBookByClient() {
-
         Client client = new Client();
         lib.addReader(client);
 
@@ -101,11 +107,19 @@ public class LibraryTests {
 
         assertEquals(lib.getBooks().size(), 2);
         assertEquals(client.getReadBooks().size(), BOOK_RENT_LIMIT - 1);
+    }
 
-        System.out.println(lib.getReadingBooksListAll());
+    @Test
+    public void temp() {
+        BookCopy book = null;
+        for (int i = 0; i < 12; i++) {
+            book = new BookCopy();
+            book.setName("Book" + book.getId());
+            book.setAuthor("Author" + book.getId());
+            book.setYear(2016);
+            lib.addBook(book);
+        }
 
-        Client client2 = new Client();
-        lib.addReader(client2);
-        lib.getBook(book, client2);
+        System.out.println(lib.getBooksByNameKeyWords(null));
     }
 }

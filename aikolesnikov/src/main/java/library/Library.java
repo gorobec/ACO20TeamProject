@@ -2,6 +2,8 @@ package library;
 
 import datastructures.MyArrayList;
 
+import java.util.Comparator;
+
 import static library.LIB_SETTINGS.BOOK_RENT_LIMIT;
 import static library.LIB_SETTINGS.LIBRARY_NAME;
 
@@ -73,6 +75,10 @@ public class Library {
             System.out.println("Client does not exist ");
             return false;
         }
+        if (client.isBlocked()) {
+            System.out.println("Client is not allowed to rent books.");
+            return false;
+        }
 
         if (client.getReadBooks().size() == BOOK_RENT_LIMIT) {
             System.out.println("Client's rent limit is exceeded.");
@@ -136,19 +142,66 @@ public class Library {
     }
 
     // 9) посмотреть издания конкретного автора
+    public String getBooksByAuthor(String author) {
+        if (author == null) author = "";
+        final StringBuilder sb = new StringBuilder("");
+        for (int i = 0; i < books.size(); i++) {
+            if (author.equals(((BookCopy) books.get(i)).getAuthor())) {
+                sb.append(books.get(i)).toString();
+                sb.append("};\n");
+            }
+        }
+        return sb.toString();
+    }
 
     // 10) посмотреть издания конкретного года
-    /*public String findBook(int Year){
-        for (int i=0; i<books.size(); i++){
+    public String getBooksByYear(int year) {
+        final StringBuilder sb = new StringBuilder("");
+        for (int i = 0; i < books.size(); i++) {
+            if (year == ((BookCopy) books.get(i)).getYear()) {
+                sb.append(books.get(i)).toString();
+                sb.append("};\n");
+            }
+        }
+        return sb.toString();
+    }
+
+    private boolean equalsKeys(String s, String... keys) {
+        if (keys == null) return true;
+        for (String key : keys) {
+            if (!s.contains(key)) return false;
+        }
+
+        return true;
+    }
+
+    // 11) найти издание по названию (ключевым словам). Использовать varargs.
+    public String getBooksByNameKeyWords(String... keys) {
+        final StringBuilder sb = new StringBuilder("");
+        for (int i = 0; i < books.size(); i++) {
+            if (equalsKeys(((BookCopy) books.get(i)).getName(), keys)) {
+                sb.append(books.get(i)).toString();
+                sb.append("};\n");
+            }
+        }
+        return sb.toString();
+    }
+
+    public void clientsSort(Comparator<Client> comparator) {
+        Client tmpC;
+        for (int j = 0; j < clients.size(); j++) {
+            for (int i = 0; i < clients.size() - 1; i++) {
+                if (comparator.compare((Client) clients.get(i), (Client) clients.get(i + 1)) > 0) {
+                    tmpC = (Client) clients.get(i);
+                    clients.set(clients.get(i + 1), i);
+                    clients.set(tmpC, i+1);
+                }
+            }
         }
     }
-*/
-
 
     /*
-      11) найти издание по названию (ключевым словам). Использовать varargs.
-
- 	    * пункты 1, 2, 6, 7, 9, 10, 11, 12 выводить в отсортированом виде,
+         * пункты 1, 2, 6, 7, 9, 10, 11, 12 выводить в отсортированом виде,
            сортировку делать по разным параметрам(имя, название, год и т.д.)
 
  	  ** задание будет изменяться, по этому ваша программа должна обладать определенной гибкостью

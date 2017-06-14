@@ -3,7 +3,7 @@ package library;
 /**
  * BookCopy
  */
-public class BookCopy extends Edition {
+public class BookCopy extends Edition{
     private static long bookCounter;
     private long id;
     private double price;
