@@ -83,6 +83,18 @@ public class ArrayUtilsTest {
             assertEquals(array[i], sortedArray[i]);
         }
     }
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void test_mergeSort_empty() {
+        ArrayUtils.mergeSort(arrayEmpty);
+        assertEquals(0, arrayEmpty.length);
+    }
+    @Test
+    public void test_mergeSort() throws Exception {
+        ArrayUtils.mergeSort(array);
+        for (int i = 0; i < array.length; i++) {
+            assertEquals(array[i], sortedArray[i]);
+        }
+    }
 
     @Test (expected = NullPointerException.class)
     public void test_binarySearch_null_array(){

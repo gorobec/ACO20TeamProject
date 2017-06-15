@@ -1,5 +1,7 @@
 package utils;
 
+
+import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
@@ -71,6 +73,52 @@ public class ArrayUtils {
         }
         return false;
     }
+
+
+    public static <T extends Comparable<T>> void mergeSort(T[] array) {
+        if (array.length < 2) throw new IndexOutOfBoundsException("Length of array is 0 ro 1");
+        int leftFrom = 0;
+        int leftTo = array.length / 2;
+        int rightFrom = leftTo + 1;
+        int rightTo = array.length - 1;
+        mergeSort(array, leftFrom, leftTo);
+        mergeSort(array, rightFrom, rightTo);
+
+
+    }
+    private static <T extends Comparable<T>> void mergeSort(T[] array, int from, int to) {
+        int leftFrom = from;
+        int leftTo;
+        int rightFrom;
+        int rightTo = to;
+        if (to > from) {
+            leftTo = (from + to) / 2;
+            rightFrom = leftTo + 1;
+            mergeSort(array, leftFrom, leftTo);
+            mergeSort(array, rightFrom, rightTo);
+
+            T[] tempArray;
+            tempArray = (T[]) new Object[to - from + 1];
+            int curPosition = leftFrom;
+            while ((leftFrom - leftTo) * (rightFrom - rightTo) != 0){
+                if (array[leftFrom].compareTo(array[rightFrom]) < 0)
+                    tempArray[curPosition++] = array[leftFrom++];
+                else
+                    tempArray[curPosition++] = array[rightFrom++];
+            }
+            if (leftFrom < leftTo)
+                tempArray[curPosition++] = array[leftFrom++];
+            if (rightFrom < rightTo)
+                tempArray[curPosition++] = array[rightFrom++];
+            for (int i = 0; i < tempArray.length; i++) {
+                array[rightTo] = tempArray[rightTo];
+                rightTo--;
+            }
+        }
+
+    }
+
+
     public static <T> boolean binarySearch(T[] array, T object, Comparator<T> comparator){
         int start = 0;
         int end = array.length - 1;
@@ -87,6 +135,4 @@ public class ArrayUtils {
         }
         return false;
     }
-
-
 }
