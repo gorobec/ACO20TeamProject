@@ -7,6 +7,26 @@ import java.util.Iterator;
  */
 //public class MyLinkedList implements MyList {
 public class MyLinkedList<T> implements MyList<T> {
+
+    public Iterator<T> iterator() {
+        return new Pointer();
+    }
+
+    public class Pointer implements Iterator<T> {
+        Node<T> pointer;
+
+        public T next() {
+            pointer = pointer.next;
+
+            return pointer.value;
+        }
+
+        public boolean hasNext() {
+            return (pointer.next != null);
+        }
+    }
+
+
     private static class Node<T> {
         private Node<T> next;
         private Node<T> prev;
@@ -15,11 +35,13 @@ public class MyLinkedList<T> implements MyList<T> {
         private Node(T value) {
             this.value = value;
         }
+
     }
 
     private Node<T> first;
     private Node<T> last;
     private int size;
+
 
     public MyLinkedList() {
     }
@@ -31,8 +53,8 @@ public class MyLinkedList<T> implements MyList<T> {
         if (size == 0) {
             first = last = newNode;
         } else {
-            newNode.prev=last;
-            last.next=newNode;
+            newNode.prev = last;
+            last.next = newNode;
             last = newNode;
         }
         size++;

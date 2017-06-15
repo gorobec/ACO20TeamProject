@@ -1,5 +1,8 @@
 package datastructures;
 
+
+import java.util.Iterator;
+
 /**
  * MyArrayLisr Class
  */
@@ -132,5 +135,9 @@ public class MyArrayList implements MyList {
             }
         }
         return -1;
+    }
+
+    public Iterator iterator() {
+        return null;
     }
 }
