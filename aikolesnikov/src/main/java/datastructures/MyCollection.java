@@ -3,13 +3,13 @@ package datastructures;
 /**
  *  base template interface for MyDataStructures
  */
-interface MyCollection{
+interface MyCollection<T>{
 
-    boolean	add(Object o);                  // Ensures that this collection contains the specified element (optional operation).
-    boolean	contains(Object o);             // Returns true if this collection contains the specified element.
+    boolean	add(T o);                  // Ensures that this collection contains the specified element (optional operation).
+    boolean	contains(T o);             // Returns true if this collection contains the specified element.
     void	clear();                        // Removes all of the elements from this collection (optional operation).
     boolean	isEmpty();                      // Returns true if this collection contains no elements.
-    boolean	remove(Object o);               // Removes a single instance of the specified element from this collection, if it is present (optional operation).
+    boolean	remove(T o);               // Removes a single instance of the specified element from this collection, if it is present (optional operation).
     int	size();                             // Returns the number of elements in this collection.
 
 /*
