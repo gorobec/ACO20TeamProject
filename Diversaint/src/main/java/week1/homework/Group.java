@@ -10,6 +10,10 @@ public class Group implements Cloneable{
     protected Student[] students;
     private int size;
 
+    public int getSize() {
+        return size;
+    }
+
     private int countStudents(Student[] students) {
         int count = 0;
         for (Student student : students) {
@@ -182,8 +186,8 @@ public class Group implements Cloneable{
 
     @Override
     protected Group clone() throws CloneNotSupportedException {
-        Student[] cloneStudents = new Student[students.length];
-        for (int i = 0; i < students.length; i++) {
+        Student[] cloneStudents = new Student[size];
+        for (int i = 0; i < size; i++) {
             cloneStudents[i] = students[i].clone();
         }
         Group clone = (Group) super.clone();

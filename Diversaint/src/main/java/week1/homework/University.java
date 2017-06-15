@@ -9,6 +9,10 @@ public class University implements Cloneable{
     private String name;
     private Group[] groups;
     private int size;
+
+    public int getSize() {
+        return size;
+    }
     // fixed! when in groups will be null between group, size will be fixed and null will be delete
 
     public University(String name, Group[] groups){
@@ -74,10 +78,10 @@ public class University implements Cloneable{
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof University)) throw new ClassCastException();
-        if (this.groups.length != ((University) obj).groups.length) return false;
-        for (int i = 0; i < this.groups.length; i++) {
+        if (this.size != ((University) obj).getSize()) return false;
+        for (int i = 0; i < this.size; i++) {
             if(!(this.groups[i].equals(((University) obj).groups[i]))) return false;
-            for (int j = 0; j < this.groups[i].students.length; j++) {
+            for (int j = 0; j < this.groups[i].getSize(); j++) {
                 if (!(this.groups[i].students[j].equals(((University) obj).groups[i].students[j]))) return false;
             }
         }
@@ -87,8 +91,8 @@ public class University implements Cloneable{
 
     @Override
     public University clone() throws CloneNotSupportedException {
-        Group[] cloneGroups = new Group[groups.length];
-        for (int i = 0; i < groups.length; i++) {
+        Group[] cloneGroups = new Group[size];
+        for (int i = 0; i < size; i++) {
             cloneGroups[i] = groups[i].clone();
         }
         University clone = (University) super.clone();
