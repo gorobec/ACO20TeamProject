@@ -18,7 +18,7 @@ public class ArrayUtilsTest {
     private Comparator<String> comparator;
     @Before
     public void setUp() throws Exception {
-        array = new String[10];
+        array = new String[11];
         array[8] = "1";
         array[2] = "2";
         array[1] = "3";
@@ -55,11 +55,11 @@ public class ArrayUtilsTest {
     @Test
     public void test_bubbleSort() throws Exception {
         ArrayUtils.bubbleSort(array);
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < sortedArray.length; i++) {
             assertEquals(array[i], sortedArray[i]);
         }
     }
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void test_selSort_empty() throws Exception {
         ArrayUtils.selectionSort(arrayEmpty);
         assertEquals(0, arrayEmpty.length);
@@ -67,11 +67,11 @@ public class ArrayUtilsTest {
     @Test
     public void test_selSort() throws Exception {
         ArrayUtils.selectionSort(array);
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < sortedArray.length; i++) {
             assertEquals(array[i], sortedArray[i]);
         }
     }
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void test_insSort_empty() throws Exception {
         ArrayUtils.insertSort(arrayEmpty);
         assertEquals(0, arrayEmpty.length);
@@ -79,7 +79,7 @@ public class ArrayUtilsTest {
     @Test
     public void test_insSort() throws Exception {
         ArrayUtils.insertSort(array);
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < sortedArray.length; i++) {
             assertEquals(array[i], sortedArray[i]);
         }
     }
@@ -91,7 +91,7 @@ public class ArrayUtilsTest {
     @Test
     public void test_mergeSort() throws Exception {
         ArrayUtils.mergeSort(array);
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < sortedArray.length; i++) {
             assertEquals(array[i], sortedArray[i]);
         }
     }
@@ -105,7 +105,7 @@ public class ArrayUtilsTest {
         ArrayUtils.binarySearch(new String[2], null);
     }
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void test_binarySearch_empty_array(){
         assertFalse(ArrayUtils.binarySearch(new String[0], " "));
     }

@@ -1,7 +1,6 @@
 package utils;
 
 
-import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
@@ -11,11 +10,14 @@ public class ArrayUtils {
 
 
     public static <T extends Comparable<T>> void bubbleSort(T[] array){
-        T temp;
+
+        int size = countNotNullEl(array);
+        if (size < 2) throw new IndexOutOfBoundsException("Array is empty or consist one element");
+
         boolean swapped;
         do {
             swapped = false;
-            for (int i = 0; i < array.length - 1; i++) {
+            for (int i = 0; i < size - 1; i++) {
                 if (array[i].compareTo(array[i + 1]) > 0){
                     swap(array, i, i + 1);
                     swapped = true;
@@ -25,10 +27,14 @@ public class ArrayUtils {
     }
 
     public static <T extends Comparable<T>> void selectionSort(T[] array){
+
+        int size = countNotNullEl(array);
+        if (size < 2) throw new IndexOutOfBoundsException("Array is empty or consist one element");
+
         int minEl;
-        for (int curEl = 0; curEl < array.length; curEl++) {
+        for (int curEl = 0; curEl < size; curEl++) {
             minEl = curEl;
-            for (int i = curEl + 1; i < array.length; i++) {
+            for (int i = curEl + 1; i < size; i++) {
                 if (array[minEl].compareTo(array[i]) > 0){
                     minEl = i;
                 }
@@ -38,7 +44,10 @@ public class ArrayUtils {
     }
 
     public static <T extends  Comparable<T>> void insertSort(T[] array){
-        for (int curEl = 1; curEl < array.length; curEl++) {
+        int size = countNotNullEl(array);
+        if (size < 2) throw new IndexOutOfBoundsException("Array is empty or consist one element");
+
+        for (int curEl = 1; curEl < size; curEl++) {
             int i = curEl;
             while (i > 0 && array[i - 1].compareTo(array[curEl]) >= 0){
                     swap(array, curEl, i - 1);
@@ -58,8 +67,12 @@ public class ArrayUtils {
     }
 
     public static <T extends Comparable<T>> boolean binarySearch(T[] array, T object){
+
+        int size = countNotNullEl(array);
+        if (size < 2) throw new IndexOutOfBoundsException("Array is empty or consist one element");
+
         int start = 0;
-        int end = array.length - 1;
+        int end = size - 1;
         int middle;
         int result;
         while (start <= end){
@@ -76,16 +89,21 @@ public class ArrayUtils {
 
 
     public static <T extends Comparable<T>> void mergeSort(T[] array) {
-        if (array.length < 2) throw new IndexOutOfBoundsException("Length of array is 0 ro 1");
-        int leftFrom = 0;
+
+        int size = countNotNullEl(array);
+        if (size < 2) throw new IndexOutOfBoundsException("Array is empty or consist one element");
+        mergeSort(array, 0, size - 1);
+/*        int leftFrom = 0;
         int leftTo = array.length / 2;
         int rightFrom = leftTo + 1;
         int rightTo = array.length - 1;
         mergeSort(array, leftFrom, leftTo);
-        mergeSort(array, rightFrom, rightTo);
+        mergeSort(array, rightFrom, rightTo);*/
 
 
     }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
     private static <T extends Comparable<T>> void mergeSort(T[] array, int from, int to) {
         int leftFrom = from;
         int leftTo;
@@ -97,27 +115,26 @@ public class ArrayUtils {
             mergeSort(array, leftFrom, leftTo);
             mergeSort(array, rightFrom, rightTo);
 
-            T[] tempArray;
-            tempArray = (T[]) new Object[to - from + 1];
-            int curPosition = leftFrom;
-            while ((leftFrom - leftTo) * (rightFrom - rightTo) != 0){
+            Object[] tempArray;
+            tempArray = new Object[to - from + 1];
+            int curPosition = 0;
+            while ((leftFrom <= leftTo) && (rightFrom <= rightTo)){
                 if (array[leftFrom].compareTo(array[rightFrom]) < 0)
                     tempArray[curPosition++] = array[leftFrom++];
                 else
                     tempArray[curPosition++] = array[rightFrom++];
             }
-            if (leftFrom < leftTo)
+            while (leftFrom <= leftTo)
                 tempArray[curPosition++] = array[leftFrom++];
-            if (rightFrom < rightTo)
+            while (rightFrom <= rightTo)
                 tempArray[curPosition++] = array[rightFrom++];
-            for (int i = 0; i < tempArray.length; i++) {
-                array[rightTo] = tempArray[rightTo];
+            for (int i = tempArray.length - 1; i >= 0; i--) {
+                array[rightTo] = (T) tempArray[i];
                 rightTo--;
             }
         }
 
     }
-
 
     public static <T> boolean binarySearch(T[] array, T object, Comparator<T> comparator){
         int start = 0;
@@ -134,5 +151,16 @@ public class ArrayUtils {
             else return true;
         }
         return false;
+    }
+
+
+    private static<T> int countNotNullEl(T[] array) {
+        int countNull = 0;
+        for (int i = array.length - 1; i >= 0; i--) {
+            if (array[i] == null) countNull++;
+        }
+        return array.length - countNull;
+
+
     }
 }
