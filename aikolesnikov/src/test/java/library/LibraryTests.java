@@ -92,7 +92,7 @@ public class LibraryTests {
         Client client = new Client();
         lib.addReader(client);
 
-        BookCopy book = null;
+        BookCopy book;
         for (int i = 0; i < BOOK_RENT_LIMIT + 1; i++) {
             book = new BookCopy();
             book.setName("Book" + book.getId());
@@ -110,8 +110,46 @@ public class LibraryTests {
     }
 
     @Test
+    public void checkGetReturnBook(){
+        // init
+        Client client = new Client();
+        lib.addReader(client);
+        BookCopy book = new BookCopy();
+        book.setName("Book1");
+        lib.addBook(book);
+        assertEquals(lib.getBooks().size(), 1);
+        assertEquals(client.getReadBooks().size(), 0);
+
+        // good book to wrong client )
+        lib.getBook(book, null);
+        assertEquals(lib.getBooks().size(), 1);
+        assertEquals(client.getReadBooks().size(), 0);
+        // wrong book to good client )
+        lib.getBook(null, client);
+        assertEquals(lib.getBooks().size(), 1);
+        assertEquals(client.getReadBooks().size(), 0);
+        // good book to good client )
+        lib.getBook(book, client);
+        assertEquals(lib.getBooks().size(), 0);
+        assertEquals(client.getReadBooks().size(), 1);
+
+        // good book from wrong client )
+        lib.returnBook(null, (BookCopy) client.getReadBooks().get(0));
+        assertEquals(lib.getBooks().size(), 0);
+        assertEquals(client.getReadBooks().size(), 1);
+        // wrong book from good client )
+        lib.returnBook(client, null);
+        assertEquals(lib.getBooks().size(), 0);
+        assertEquals(client.getReadBooks().size(), 1);
+        // good book from good client )
+        lib.returnBook(client, (BookCopy) client.getReadBooks().get(0));
+        assertEquals(lib.getBooks().size(), 1);
+        assertEquals(client.getReadBooks().size(), 0);
+    }
+
+    @Test
     public void temp() {
-        BookCopy book = null;
+        BookCopy book;
         for (int i = 0; i < 12; i++) {
             book = new BookCopy();
             book.setName("Book" + book.getId());
@@ -120,6 +158,6 @@ public class LibraryTests {
             lib.addBook(book);
         }
 
-        System.out.println(lib.getBooksByNameKeyWords(null));
+        // System.out.println(lib.getBooksByNameKeyWords(null));
     }
 }

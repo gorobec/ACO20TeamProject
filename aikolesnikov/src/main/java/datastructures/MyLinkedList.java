@@ -8,24 +8,22 @@ import java.util.Iterator;
 //public class MyLinkedList implements MyList {
 public class MyLinkedList<T> implements MyList<T> {
 
-    public Iterator<T> iterator() {
-        return new Pointer();
-    }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("MyLinkedList{");
 
-    public class Pointer implements Iterator<T> {
-        Node<T> pointer;
 
-        public T next() {
-            pointer = pointer.next;
-
-            return pointer.value;
+        /*
+        Iterator<T> pointer = iterator();
+        while (pointer.hasNext()) {
+            ???? sb.append(").append(pointer.);
+            ?????? pointer = pointer.next();
         }
+        */
 
-        public boolean hasNext() {
-            return (pointer.next != null);
-        }
+        sb.append('}');
+        return sb.toString();
     }
-
 
     private static class Node<T> {
         private Node<T> next;
@@ -41,7 +39,6 @@ public class MyLinkedList<T> implements MyList<T> {
     private Node<T> first;
     private Node<T> last;
     private int size;
-
 
     public MyLinkedList() {
     }
@@ -107,25 +104,27 @@ public class MyLinkedList<T> implements MyList<T> {
         return false;
     }
 
-
-    /*
-
-    public boolean add(T o){
-        Node<T> newNode = new Node(o);
-        last = newNode;
-
-        return true;
+    public Iterator<T> iterator() {
+        return new Pointer();
     }
 
-*/
-    public static void main(String[] args) {
-        MyLinkedList<String> l = new MyLinkedList<>();
+    public class Pointer implements Iterator<T> {
+        Node<T> pointer;
 
-        // Node<String> node = new Node("AAA");
+        public Pointer() {
+            pointer = new Node<>(null);
+            pointer.next = first;
+        }
 
-        System.out.println(l);
-        l.add("AAA");
-        System.out.println(l);
+        public T next() {
+            pointer = pointer.next;
 
+            return pointer.value;
+        }
+
+        public boolean hasNext() {
+            return (pointer.next != null);
+        }
     }
+
 }

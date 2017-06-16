@@ -38,7 +38,7 @@ public class Library {
     public String printListOfClients() {
         final StringBuilder sb = new StringBuilder("");
         for (int i = 0; i < clients.size(); i++) {
-            sb.append(clients.get(i)).toString();
+            sb.append(clients.get(i));
             sb.append("};\n");
         }
         return sb.toString();
@@ -48,7 +48,7 @@ public class Library {
     public String printListOfBooks() {
         final StringBuilder sb = new StringBuilder("");
         for (int i = 0; i < books.size(); i++) {
-            sb.append(books.get(i)).toString();
+            sb.append(books.get(i));
             sb.append("};\n");
         }
         return sb.toString();
@@ -92,12 +92,17 @@ public class Library {
     }
 
     boolean returnBook(Client client, BookCopy book) {
-        if ((book == null) || !(client.getReadBooks().contains(book))) {
+        if ((book == null)) {
             System.out.println("Book does not exists.");
             return false;
         }
         if ((client == null) || !(clients.contains(client))) {
             System.out.println("Client does not exist ");
+            return false;
+        }
+
+        if (!(client.getReadBooks().contains(book))) {
+            System.out.println("Book does not exists.");
             return false;
         }
 
@@ -147,7 +152,7 @@ public class Library {
         final StringBuilder sb = new StringBuilder("");
         for (int i = 0; i < books.size(); i++) {
             if (author.equals(((BookCopy) books.get(i)).getAuthor())) {
-                sb.append(books.get(i)).toString();
+                sb.append(books.get(i));
                 sb.append("};\n");
             }
         }
@@ -159,7 +164,7 @@ public class Library {
         final StringBuilder sb = new StringBuilder("");
         for (int i = 0; i < books.size(); i++) {
             if (year == ((BookCopy) books.get(i)).getYear()) {
-                sb.append(books.get(i)).toString();
+                sb.append(books.get(i));
                 sb.append("};\n");
             }
         }
@@ -180,7 +185,7 @@ public class Library {
         final StringBuilder sb = new StringBuilder("");
         for (int i = 0; i < books.size(); i++) {
             if (equalsKeys(((BookCopy) books.get(i)).getName(), keys)) {
-                sb.append(books.get(i)).toString();
+                sb.append(books.get(i));
                 sb.append("};\n");
             }
         }
@@ -194,7 +199,7 @@ public class Library {
                 if (comparator.compare((Client) clients.get(i), (Client) clients.get(i + 1)) > 0) {
                     tmpC = (Client) clients.get(i);
                     clients.set(clients.get(i + 1), i);
-                    clients.set(tmpC, i+1);
+                    clients.set(tmpC, i + 1);
                 }
             }
         }
