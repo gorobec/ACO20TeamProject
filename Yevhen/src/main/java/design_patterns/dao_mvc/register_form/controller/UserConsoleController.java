@@ -4,6 +4,8 @@ import design_patterns.dao_mvc.register_form.dao.UserDao;
 import design_patterns.dao_mvc.register_form.model.User;
 import design_patterns.dao_mvc.register_form.view.ConsoleView;
 
+import javax.swing.text.View;
+
 /**
  * Created by gorobec on 11.06.17.
  */
@@ -12,15 +14,20 @@ public class UserConsoleController {
     private UserDao userDao;
 
 
+
+    public UserConsoleController(UserDao userDao, ConsoleView view) {
+        this.userDao = userDao;
+        this.view = view;
+    }
+
     public UserConsoleController(UserDao userDao) {
         this.userDao = userDao;
-        view = new ConsoleView();
+        this.view = new ConsoleView();
     }
 
 
     public void startApp(){
 
-        while (true){
            int choice = view.greeting();
             switch (choice){
                 case 1:
@@ -33,11 +40,6 @@ public class UserConsoleController {
                     System.out.println("Not supported operation!");
                     break;
             }
-
-
-        }
-
-
     }
 
     private void delete() {

@@ -14,7 +14,7 @@ public class UserFileDao implements UserDao {
     @Override
     public boolean createUser(User user) {
 //        check if exist
-        ArrayList<User> list = FileUtils.getListOfUsersFromFile(LIST_PATH);
+        ArrayList<User> list = FileUtils.getListOfUsersFromJsonFile(LIST_PATH);
 
         if(list == null){
             list = new ArrayList<>();
@@ -27,7 +27,7 @@ public class UserFileDao implements UserDao {
         }
 //        write to db
 
-        return FileUtils.writeUsersToFile(LIST_PATH, list);
+        return FileUtils.writeUsersToJsonFile(LIST_PATH, list);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class UserFileDao implements UserDao {
 
     @Override
     public boolean deleteUser(User user) {
-        ArrayList<User> list = FileUtils.getListOfUsersFromFile(LIST_PATH);
+        ArrayList<User> list = FileUtils.getListOfUsersFromJsonFile(LIST_PATH);
 
         if(list == null){
             return false;
@@ -50,7 +50,7 @@ public class UserFileDao implements UserDao {
 
         if(list.contains(user)){
             list.remove(user);
-            return FileUtils.writeUsersToFile(LIST_PATH, list);
+            return FileUtils.writeUsersToJsonFile(LIST_PATH, list);
         } else {
             return false;
         }

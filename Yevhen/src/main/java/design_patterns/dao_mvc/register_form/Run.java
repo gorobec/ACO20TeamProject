@@ -12,7 +12,9 @@ public class Run {
         UserConsoleController consoleController =
                 new UserConsoleController(new UserFileDao());
 
-        consoleController.startApp();
+        while (true) {
+            consoleController.startApp();
+        }
 
     }
 }

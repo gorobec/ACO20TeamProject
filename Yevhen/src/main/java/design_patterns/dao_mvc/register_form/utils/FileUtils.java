@@ -1,5 +1,8 @@
 package design_patterns.dao_mvc.register_form.utils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import design_patterns.dao_mvc.register_form.model.User;
 
 import java.io.*;
@@ -24,6 +27,21 @@ public class FileUtils {
 
     }
 
+    public static ArrayList<User> getListOfUsersFromJsonFile(String listPath) {
+
+
+
+        Gson gson = new Gson();
+
+        try (FileReader reader = new FileReader(listPath)){
+            ArrayList<User> users = gson.fromJson(reader, new TypeToken<ArrayList<User>>(){}.getType());
+            return users;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
     public static ArrayList<User> getListOfUsersFromFile(String listPath) {
 
         try (ObjectInputStream ois = new ObjectInputStream(
@@ -45,6 +63,19 @@ public class FileUtils {
             ois.writeObject(users);
             return true;
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public static boolean writeUsersToJsonFile(String listPath, ArrayList<User> users) {
+
+        GsonBuilder gb = new GsonBuilder();
+        Gson gson = gb.setPrettyPrinting().create();
+
+        try (FileWriter writer = new FileWriter(listPath)){
+            gson.toJson(users, writer);
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
         }
