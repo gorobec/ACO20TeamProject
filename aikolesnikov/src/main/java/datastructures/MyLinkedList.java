@@ -8,23 +8,6 @@ import java.util.Iterator;
 //public class MyLinkedList implements MyList {
 public class MyLinkedList<T> implements MyList<T> {
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("MyLinkedList{");
-
-
-        /*
-        Iterator<T> pointer = iterator();
-        while (pointer.hasNext()) {
-            ???? sb.append(").append(pointer.);
-            ?????? pointer = pointer.next();
-        }
-        */
-
-        sb.append('}');
-        return sb.toString();
-    }
-
     private static class Node<T> {
         private Node<T> next;
         private Node<T> prev;
@@ -61,27 +44,65 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public boolean contains(T o) {
+        for (T t : this)
+            if (t.equals(o)) return true;
         return false;
     }
 
     @Override
     public void clear() {
+        if (size == 0) {
+            return;
+        }
+        if (size == 1) {
+            first = last = null;
+            size = 0;
+            return;
+        }
 
+        Node<T> iter = new Node<>(null);
+        iter.next = first;
+        while (iter != last) {
+            iter.next.value = null;
+            iter = iter.next;
+        }
+        first = last = null;
+        size = 0;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public boolean remove(T o) {
+        if (size == 0) {
+            return false;
+        } else if (size == 1) {
+            first = last = null;
+            size = 0;
+            return true;
+        } else {
+            Node<T> iter = new Node<>(null);
+            iter.next = first;
+            while (iter != last) {
+                if (iter.next.value.equals(o)) {
+                    System.out.println(iter.next.value);
+                    return true;
+                } else {
+                    System.out.println(iter.value);
+                    iter = iter.next;
+                }
+            }
+        }
+
         return false;
     }
 
     @Override
     public int size() {
-        return this.size;
+        return size;
     }
 
     @Override
