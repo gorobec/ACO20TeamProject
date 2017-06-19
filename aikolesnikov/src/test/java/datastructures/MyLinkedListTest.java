@@ -11,26 +11,42 @@ import java.util.Iterator;
  */
 public class MyLinkedListTest {
     @Test
-    public void additems(){
+    public void addContainsRemoveClearItems() {
         MyLinkedList<String> ll = new MyLinkedList<>();
         ll.add("AAA");
         ll.add("BBB");
 
-        Assert.assertEquals(ll.size(),2);
+        Assert.assertEquals(ll.size(), 2);
         Assert.assertTrue(ll.contains("AAA"));
 
-        // ll.clear();
-        // Assert.assertFalse(ll.contains("AAA"));
-        // Assert.assertTrue(ll.size()==0);
+        ll.clear();
+        Assert.assertTrue(ll.size() == 0);
+        Assert.assertFalse(ll.contains("AAA"));
 
-        ll.remove("AAA");
-/*        Iterator ptr = ll.iterator();
-        while (ptr.hasNext()) {
-            System.out.println(ll);
-            ptr.next();
-        }*/
-        // for (String s:ll)
-        // System.out.println(s);
+        ll.add("AAA2");
+        ll.add("BBB2");
+        Assert.assertTrue(ll.size() == 2);
+        Assert.assertTrue(ll.contains("AAA2"));
 
+        Assert.assertFalse(ll.remove(null));
+        ll.remove("CCC");
+        Assert.assertTrue(ll.size() == 2);
+        Assert.assertFalse(ll.contains("CCC"));
+
+        Assert.assertTrue(ll.remove("AAA2"));
+        Assert.assertTrue(ll.remove("BBB2"));
+        Assert.assertFalse(ll.contains("AAA2"));
+        Assert.assertTrue(ll.isEmpty());
+    }
+
+    @Test
+    public void getSetItems(){
+        MyLinkedList<String> ll = new MyLinkedList<>();
+        ll.add("AAA");
+        ll.add("BBB");
+
+        Assert.assertTrue(ll.get(0).equals("AAA"));
+        Assert.assertTrue(ll.get(1).equals("BBB"));
+        Assert.assertTrue(ll.get(2)==null);
     }
 }

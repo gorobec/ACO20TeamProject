@@ -8,6 +8,16 @@ import java.util.Iterator;
 //public class MyLinkedList implements MyList {
 public class MyLinkedList<T> implements MyList<T> {
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("MyLinkedList{");
+        for (T s : this)
+            sb.append(s).append(';');
+        sb.append('}');
+
+        return sb.toString();
+    }
+
     private static class Node<T> {
         private Node<T> next;
         private Node<T> prev;
@@ -77,24 +87,37 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public boolean remove(T o) {
-        if (size == 0) {
-            return false;
-        } else if (size == 1) {
+        if (o == null) return false;
+        if (size == 0) return false;
+
+        if (size == 1) {
+            first.value = null;
             first = last = null;
             size = 0;
             return true;
-        } else {
-            Node<T> iter = new Node<>(null);
-            iter.next = first;
-            while (iter != last) {
-                if (iter.next.value.equals(o)) {
-                    System.out.println(iter.next.value);
+        }
+
+
+        Node<T> iter = new Node<>(null);
+        iter.next = first;
+        while (iter != last) {
+            if (iter.next.value.equals(o)) {
+                if (iter.next == first) {
+                    (iter.next.next).prev = null;
+                    first.value = null;
+                    first = iter.next.next;
+                    size--;
                     return true;
                 } else {
-                    System.out.println(iter.value);
-                    iter = iter.next;
+                    iter.next.next.prev = iter.next.prev;
+                    iter.next.prev.next = iter.next.next;
+                    iter.next.value = null;
+                    size--;
+                    return true;
                 }
-            }
+
+            } else
+                iter = iter.next;
         }
 
         return false;
@@ -112,7 +135,11 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        if ((index < 0) || (index >= size)) return null;
+        Node<T> ptr = first;
+        while (index-- > 0) ptr = ptr.next;
+
+        return ptr.value;
     }
 
     @Override
