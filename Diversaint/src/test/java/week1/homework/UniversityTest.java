@@ -37,6 +37,13 @@ public class UniversityTest {
 
     @Test
     public void test_cloning() throws Exception {
+        group3 = new Group(4, new Student[]{null,student1, null});
+        group2 = new Group(4, new Student[]{null,student2, null});
+        university = new University("f", 5);
+        cloneUniver = new University("ds", 4);
+        university.addGroup(group3);
+        cloneUniver.addGroup(group2);
+        university.equals(cloneUniver);
         cloneUniver = university.clone();
         assertTrue(university.equals(cloneUniver));
         student1.setName("NotClone");

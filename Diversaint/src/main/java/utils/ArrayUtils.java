@@ -12,7 +12,7 @@ public class ArrayUtils {
     public static <T extends Comparable<T>> void bubbleSort(T[] array){
 
         int size = countNotNullEl(array);
-        if (size < 2) throw new IndexOutOfBoundsException("Array is empty or consist one element");
+        if (size < 2) return;
 
         boolean swapped;
         do {
@@ -69,7 +69,6 @@ public class ArrayUtils {
     public static <T extends Comparable<T>> boolean binarySearch(T[] array, T object){
 
         int size = countNotNullEl(array);
-        if (size < 2) throw new IndexOutOfBoundsException("Array is empty or consist one element");
 
         int start = 0;
         int end = size - 1;

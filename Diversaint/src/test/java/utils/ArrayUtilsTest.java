@@ -100,12 +100,12 @@ public class ArrayUtilsTest {
     public void test_binarySearch_null_array(){
         ArrayUtils.binarySearch(null, " ");
     }
-    @Test (expected = NullPointerException.class)
+    @Test
     public void test_binarySearch_null_object(){
-        ArrayUtils.binarySearch(new String[2], null);
+        assertFalse(ArrayUtils.binarySearch(new String[2], null));
     }
 
-    @Test (expected = IndexOutOfBoundsException.class)
+    @Test
     public void test_binarySearch_empty_array(){
         assertFalse(ArrayUtils.binarySearch(new String[0], " "));
     }

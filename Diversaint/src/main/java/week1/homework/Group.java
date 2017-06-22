@@ -24,7 +24,8 @@ public class Group implements Cloneable{
     // fixed! when in students will be null between students, size will be fixed and null will be delete
     public Group(int groupNumber, Student[] students) {
         this.groupNumber = groupNumber;
-        size = countStudents(students);
+        //size = countStudents(students);
+        size = students.length;
         this.students = students;
         for (int i = 0; i < students.length; i++)
             if (this.students[i] == null && i != students.length - 1)

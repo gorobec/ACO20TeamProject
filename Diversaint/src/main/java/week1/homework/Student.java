@@ -61,6 +61,8 @@ public class Student implements Cloneable{
     // override equals to student // fixed
     @Override
     public boolean equals(Object var1) {
+        if (this == null)
+        return false;
         if (var1 == null)
             return false;
         if (!(var1 instanceof Student)) // need '&& this instanceof Student' or no?

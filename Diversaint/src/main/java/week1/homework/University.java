@@ -77,7 +77,7 @@ public class University implements Cloneable{
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof University)) throw new ClassCastException();
+        if (!(obj instanceof University)) return false;
         if (this.size != ((University) obj).getSize()) return false;
         for (int i = 0; i < this.size; i++) {
             if(!(this.groups[i].equals(((University) obj).groups[i]))) return false;
