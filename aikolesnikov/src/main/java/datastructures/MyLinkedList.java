@@ -8,16 +8,6 @@ import java.util.Iterator;
 //public class MyLinkedList implements MyList {
 public class MyLinkedList<T> implements MyList<T> {
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("MyLinkedList{");
-        for (T s : this)
-            sb.append(s).append(';');
-        sb.append('}');
-
-        return sb.toString();
-    }
-
     private static class Node<T> {
         private Node<T> next;
         private Node<T> prev;
@@ -36,7 +26,6 @@ public class MyLinkedList<T> implements MyList<T> {
     public MyLinkedList() {
     }
 
-
     @Override
     public boolean add(T o) {
         Node<T> newNode = new Node<>(o);
@@ -54,8 +43,11 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public boolean contains(T o) {
-        for (T t : this)
-            if (t.equals(o)) return true;
+        Node<T> iter = first;
+        while (iter != null) {
+            if ((iter.value != null) && (iter.value.equals(o))) return true;
+            iter = iter.next;
+        }
         return false;
     }
 
@@ -100,22 +92,26 @@ public class MyLinkedList<T> implements MyList<T> {
 
         Node<T> iter = new Node<>(null);
         iter.next = first;
-        while (iter != last) {
-            if (iter.next.value.equals(o)) {
+        while (iter.next != null) {
+            if ((iter.next.value != null) && (iter.next.value.equals(o))) {
                 if (iter.next == first) {
                     (iter.next.next).prev = null;
                     first.value = null;
                     first = iter.next.next;
                     size--;
                     return true;
+                } else if (iter.next == last) {
+                    last.value = null;
+                    last.prev.next=null;
+                    last=last.prev;
+                    size--;
                 } else {
                     iter.next.next.prev = iter.next.prev;
-                    iter.next.prev.next = iter.next.next;
                     iter.next.value = null;
+                    iter.next = iter.next.next;
                     size--;
                     return true;
                 }
-
             } else
                 iter = iter.next;
         }
@@ -144,12 +140,24 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public T remove(int index) {
-        return null;
+        if ((index < 0) || (index >= size)) return null;
+
+        Node<T> ptr = first;
+        while (index-- > 0) ptr = ptr.next;
+
+        if (remove(ptr.value)) return ptr.value;
+        else return null;
     }
 
     @Override
     public boolean set(T o, int index) {
-        return false;
+        if ((index < 0) || (index >= size)) return false;
+
+        Node<T> ptr = first;
+        while (index-- > 0) ptr = ptr.next;
+
+        ptr.value = o;
+        return true;
     }
 
     public Iterator<T> iterator() {
@@ -175,4 +183,13 @@ public class MyLinkedList<T> implements MyList<T> {
         }
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("MyLinkedList{");
+        for (T s : this)
+            sb.append(s).append(';');
+        sb.append('}');
+
+        return sb.toString();
+    }
 }

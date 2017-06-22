@@ -39,7 +39,7 @@ public class MyArrayList<T> implements MyList<T> {
         if ((index < 0) || (index > ar.length - 1)) return false;
 
         if (size == ar.length) {
-          ensureCapacity();
+            ensureCapacity();
         }
         System.arraycopy(ar, index, ar, index + 1, ar.length - index - 1);
         ar[index] = o;
@@ -124,10 +124,11 @@ public class MyArrayList<T> implements MyList<T> {
     public int size() {
         return size;
     }
+
     public int indexOf(T o) {
-        if (o == null){
+        if (o == null) {
             for (int i = 0; i < size; i++) {
-                if (ar[i]==null) return i;
+                if (ar[i] == null) return i;
             }
         } else {
             for (int i = 0; i < size; i++) {
@@ -138,6 +139,19 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     public Iterator<T> iterator() {
-        return null;
+        return new Pointer();
     }
+
+    public class Pointer implements Iterator<T> {
+        private int pointer;
+
+        public T next() {
+            return ar[pointer++];
+        }
+
+        public boolean hasNext() {
+            return pointer < size;
+        }
+    }
+
 }
