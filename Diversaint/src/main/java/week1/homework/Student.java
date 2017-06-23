@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * Created by saint on 17.05.17.
  */
-public class Student {
+public class Student implements Cloneable{
     private String name;
     private String surName;
     private int age;
@@ -69,6 +69,11 @@ public class Student {
         if (student1.name.equals(this.name) && student1.surName.equals(this.surName) && student1.age == this.age)
             return true;
         return false;
+    }
+
+    @Override
+    protected Student clone() throws CloneNotSupportedException {
+        return (Student) super.clone();
     }
 
 }

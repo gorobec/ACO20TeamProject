@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
@@ -101,12 +102,12 @@ public abstract class MyListTest {
     }
 
     // tests for remove by object
-    @Test
+    @Test(expected = NoSuchElementException.class)
     public void test_remove_obj_when_empty(){
         assertFalse(myList.remove("One"));
     }
 
-    @Test
+    @Test(expected = NoSuchElementException.class)
     public void test_remove_obj_when_not_empty_and_element_not_present(){
         assertTrue(myList.add("Five"));
         assertTrue(myList.add("Six"));
@@ -130,12 +131,12 @@ public abstract class MyListTest {
         assertTrue(myList.remove("Seven"));
     }
 
-    @Test
+    @Test(expected = NoSuchElementException.class)
     public void test_remove_null_when_empty(){
         assertFalse(myList.remove(null));
     }
 
-    @Test
+    @Test(expected = NoSuchElementException.class)
     public void test_remove_null_when_not_empty_and_element_not_present(){
         assertTrue(myList.add("Five"));
         assertTrue(myList.add("Six"));
@@ -200,7 +201,7 @@ public abstract class MyListTest {
 
     //test add object in position
 
-    @Test
+    @Test (expected = IndexOutOfBoundsException.class)
     public void test_add_in_position_more_than_size(){
         assertTrue(myList.add("One"));
         assertFalse(myList.add("Two", 2));
@@ -254,7 +255,7 @@ public abstract class MyListTest {
 
     //test get o by position
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void test_get_invalid_position(){
         assertTrue(myList.add("One"));
         assertNull(myList.get(2));
@@ -279,7 +280,7 @@ public abstract class MyListTest {
 
     //remove o by position
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void test_remove_invalid_position(){
         assertTrue(myList.add("One"));
         assertNull(myList.remove(2));
@@ -318,7 +319,7 @@ public abstract class MyListTest {
 
     //set in position
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void test_set_invalid_position(){
         assertTrue(myList.add("One"));
         assertFalse(myList.set("Two", 2));
@@ -332,7 +333,7 @@ public abstract class MyListTest {
         assertTrue(myList.add("Four"));
         assertTrue(myList.set("2", 2));
     }
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void test_set_in_last_when_list_full(){
         assertTrue(myList.add("One"));
         assertTrue(myList.add("Two"));

@@ -5,10 +5,14 @@ import java.util.ArrayList;
 /**
  * Created by saint on 17.05.17.
  */
-public class Group {
+public class Group implements Cloneable{
     private int groupNumber;
-    private Student[] students;
+    protected Student[] students;
     private int size;
+
+    public int getSize() {
+        return size;
+    }
 
     private int countStudents(Student[] students) {
         int count = 0;
@@ -20,7 +24,8 @@ public class Group {
     // fixed! when in students will be null between students, size will be fixed and null will be delete
     public Group(int groupNumber, Student[] students) {
         this.groupNumber = groupNumber;
-        size = countStudents(students);
+        //size = countStudents(students);
+        size = students.length;
         this.students = students;
         for (int i = 0; i < students.length; i++)
             if (this.students[i] == null && i != students.length - 1)
@@ -178,6 +183,17 @@ public class Group {
         if (group1.groupNumber == this.groupNumber)
             return true;
         return false;
+    }
+
+    @Override
+    protected Group clone() throws CloneNotSupportedException {
+        Student[] cloneStudents = new Student[size];
+        for (int i = 0; i < size; i++) {
+            cloneStudents[i] = students[i].clone();
+        }
+        Group clone = (Group) super.clone();
+        clone.students = cloneStudents;
+        return clone;
     }
 
 }

@@ -1,6 +1,7 @@
 package data_structure;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
@@ -69,7 +70,7 @@ public class MyArrayList<T> implements MyList<T> {
                     return true;
                 }
             }
-            return false;
+            throw new NoSuchElementException();
         }
 
         for (int i = 0; i < size; i++) {
@@ -79,7 +80,7 @@ public class MyArrayList<T> implements MyList<T> {
                 return true;
             }
         }
-        return false;
+        throw new NoSuchElementException();
     }
 
     @Override
@@ -89,7 +90,7 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public boolean add(T o, int index) {
-        if (index < 0 || index > size) return false;
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException("Index: " + index+", Size: " + size);
         if(size == elementData.length) ensureCapacity();
         System.arraycopy(elementData, index, elementData, index + 1, size - index);
         elementData[index] = o;
@@ -98,13 +99,13 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public T get(int index) {
-        if (index < 0 || index > size) return null;
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException("Index: " + index+", Size: " + size);;
             return elementData[index];
     }
 
     @Override
     public T remove(int index) {
-        if (index < 0 || index > size) return null;
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException("Index: " + index+", Size: " + size);
         T temp = elementData[index];
         System.arraycopy(elementData, index + 1, elementData, index, size - index - 1);
         if (size != elementData.length)
@@ -118,7 +119,7 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public boolean set(T o, int index) {
-        if (index < 0 || index >= size) return false;
+        if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Index: " + index+", Size: " + size);
         elementData[index] = o;
         return true;
     }
