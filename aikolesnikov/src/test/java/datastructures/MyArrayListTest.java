@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -14,13 +16,12 @@ import static org.junit.Assert.assertNull;
  */
 public class MyArrayListTest {
 
-    private Object[] array;
-    private MyArrayList myArList;
+    private MyArrayList<Object> myArList;
 
     @Before
     public void setUp() {
-        array = new Object[]{1, 2, 3, 4, 5, 6};
-        myArList = new MyArrayList(array);
+        Integer[] array = new Integer[]{1, 2, 3, 4, 5, 6};
+        myArList = new MyArrayList<>(array);
     }
 
     @Test
@@ -156,7 +157,7 @@ public class MyArrayListTest {
 
         assertTrue(myArList.contains(myArList.ar[1]));
 
-        MyArrayList myArList2 = new MyArrayList(myArList);
+        MyArrayList myArList2 = new MyArrayList<>(myArList);
         myArList2.ar[1] = null;
         assertTrue(myArList.contains(null));
         assertFalse(myArList == myArList2);
@@ -191,7 +192,16 @@ public class MyArrayListTest {
         assertTrue(myArList.indexOf(null)==2);
     }
 
+    @Test
+    public void checkIterator() {
+        final StringBuilder sb = new StringBuilder("MyArrayList{");
+        for (Iterator i = myArList.iterator(); i.hasNext(); ) {
+            sb.append(i.next()).append((';'));
+        }
+        sb.append('}');
 
+        Assert.assertEquals(sb.toString(),"MyArrayList{1;2;3;4;5;6;}");
+    }
     /*    @After
     public void tearDown(){
     }*/
