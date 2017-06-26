@@ -142,7 +142,7 @@ public class MyArrayList<T> implements MyList<T> {
         return new Pointer();
     }
 
-    public class Pointer implements Iterator<T> {
+    private class Pointer implements Iterator<T> {
         private int pointer;
 
         public T next() {

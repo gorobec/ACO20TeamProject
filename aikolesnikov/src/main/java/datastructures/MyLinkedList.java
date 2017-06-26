@@ -164,7 +164,7 @@ public class MyLinkedList<T> implements MyList<T> {
         return new Pointer();
     }
 
-    public class Pointer implements Iterator<T> {
+    private class Pointer implements Iterator<T> {
         Node<T> pointer;
 
         public Pointer() {
